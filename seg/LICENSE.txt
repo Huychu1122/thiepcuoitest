@@ -1,0 +1,2 @@
+MediaPipe Selfie Segmentation (@mediapipe/selfie_segmentation) — Google LLC, Apache License 2.0.
+File .tflite và .binarypb được đổi đuôi thành .wasm để máy chủ tĩnh phục vụ đúng; nội dung giữ nguyên.
