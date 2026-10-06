@@ -32,7 +32,7 @@ export async function handle(req, store, cs, hs) {
     }
     await store.setJSON(id, p.data, { metadata: { kh: await sha(key), updated: Date.now() } });
     const h = p.html || {};
-    for (const k of ["c", "tn"]) if (typeof h[k] === "string" && /^<!doctype html>/i.test(h[k].trimStart())) await hs.set(`${id}-${k}`, h[k], { metadata: {} });
+    for (const k of ["c", "tn"]) if (typeof h[k] === "string" && /^<!doctype html>/i.test(h[k].trimStart())) await hs.set(`${id}-${k}`, h[k].replaceAll("__BMID__", id), { metadata: {} });
     return json({ id, key });
   }
   return json({ error: "Không hỗ trợ" }, 405);
