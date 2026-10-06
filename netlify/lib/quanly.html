@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E%F0%9F%92%8C%3C/text%3E%3C/svg%3E">
+<title>Quản lý thiệp · Bongmao</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Dancing+Script:wght@600&display=swap">
+<style>
+:root{--bg:#f4efe8;--card:#fffdf9;--ink:#2b2520;--muted:#776d62;--line:#e4dbd0;--soft:#f7efe6;--son:#a3262a;--son-soft:#f6e3e1;--ok:#2f7a4b;--ok-soft:#e3f1e8;--warn:#9a6a12;--warn-soft:#f8eed8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171412;--card:#211d1a;--ink:#efe8e0;--muted:#a99f94;--line:#3a332d;--soft:#2a2420;--son:#e0716f;--son-soft:#3a2221;--ok:#6cc08c;--ok-soft:#1e3326;--warn:#e2b25a;--warn-soft:#3a2f1a}}
+:root[data-theme="dark"]{--bg:#171412;--card:#211d1a;--ink:#efe8e0;--muted:#a99f94;--line:#3a332d;--soft:#2a2420;--son:#e0716f;--son-soft:#3a2221;--ok:#6cc08c;--ok-soft:#1e3326;--warn:#e2b25a;--warn-soft:#3a2f1a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14.5px/1.5 'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif}
+button,input{font:inherit;color:inherit}
+a{color:inherit}
+.wrap{max-width:980px;margin:0 auto;padding:18px 16px 60px}
+header{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-bottom:18px}
+.brand{display:flex;align-items:baseline;gap:8px;margin-right:auto}
+.brand .hy{color:var(--son);font:22px serif}
+.brand h1{margin:0;font:600 32px/1.1 'Dancing Script',cursive}
+.brand small{color:var(--muted);font-size:13px}
+.btn{border:1px solid var(--line);background:var(--card);border-radius:9px;padding:8px 13px;cursor:pointer;font-weight:500;font-size:13.5px;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.btn:hover{border-color:var(--muted)}
+.btn.pri{background:var(--son);border-color:var(--son);color:#fff}
+.btn.ghost{background:none;border-color:transparent;color:var(--muted);padding:6px 8px}
+.btn.danger{color:var(--son);border-color:color-mix(in srgb,var(--son) 40%,var(--line))}
+.btn:disabled{opacity:.6;cursor:wait}
+.btn:focus-visible,input:focus-visible{outline:2px solid var(--son);outline-offset:1px}
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}
+.tools input{flex:1;min-width:180px;border:1px solid var(--line);background:var(--card);border-radius:9px;padding:9px 12px}
+.sum{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:16px}
+.sum div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.sum b{display:block;font-size:22px;font-weight:600;line-height:1.2}
+.sum span{color:var(--muted);font-size:12.5px}
+.list{display:grid;gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:grid;gap:10px}
+.card.off{opacity:.72}
+.top{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.top h2{margin:0;font-size:16.5px;font-weight:600;margin-right:auto;min-width:0;overflow-wrap:anywhere}
+.tag{font-size:11.5px;font-weight:600;padding:2px 9px;border-radius:99px;background:var(--soft);color:var(--muted)}
+.tag.w{background:var(--son-soft);color:var(--son)}
+.tag.on{background:var(--ok-soft);color:var(--ok)}
+.tag.offt{background:var(--warn-soft);color:var(--warn)}
+.meta{color:var(--muted);font-size:12.5px;display:flex;flex-wrap:wrap;gap:4px 14px}
+.stats{display:flex;flex-wrap:wrap;gap:6px}
+.stats span{background:var(--soft);border-radius:8px;padding:4px 10px;font-size:13px}
+.stats b{font-weight:600}
+.link{display:flex;gap:6px;align-items:center;min-width:0}
+.link code{flex:1;min-width:0;font-size:12.5px;color:var(--muted);background:var(--soft);border-radius:8px;padding:7px 10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.acts{display:flex;flex-wrap:wrap;gap:6px}
+.confirm{background:var(--son-soft);border-radius:10px;padding:10px 12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.confirm p{margin:0;flex:1;min-width:200px;font-size:13.5px}
+.resp{border-top:1px solid var(--line);padding-top:10px;display:grid;gap:8px}
+.resp h3{margin:4px 0 0;font-size:13.5px;font-weight:600}
+.row{border:1px solid var(--line);border-radius:10px;padding:8px 10px;display:grid;gap:2px}
+.row .rt{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.row .rt b{margin-right:auto}
+.row small{color:var(--muted)}
+.row.hid{opacity:.5}
+.empty{text-align:center;color:var(--muted);padding:40px 10px;background:var(--card);border:1px dashed var(--line);border-radius:14px}
+.empty b{display:block;color:var(--ink);font-size:16px;margin-bottom:6px}
+.toast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:9px 14px;border-radius:9px;font-size:13.5px;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.show{opacity:1}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden}
+.seg button{border:0;background:var(--card);padding:7px 11px;cursor:pointer;font-size:13px}
+.seg button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+[hidden]{display:none!important}
+@media (max-width:640px){.sum{grid-template-columns:repeat(2,minmax(0,1fr))}.brand h1{font-size:28px}}
+</style></head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand"><span class="hy" aria-hidden="true">囍</span><h1>Bongmao</h1><small>Quản lý thiệp</small></div>
+    <a class="btn pri" href="/studio?new=wedding">+ Thiệp cưới mới</a>
+    <a class="btn pri" href="/studio?new=grad">+ Thiệp tốt nghiệp mới</a>
+    <button class="btn ghost" id="out">Đăng xuất</button>
+  </header>
+  <section class="sum" aria-label="Tổng quan">
+    <div><b id="sN">–</b><span>thiệp đang có</span></div>
+    <div><b id="sYes">–</b><span>nơi xác nhận sẽ đến</span></div>
+    <div><b id="sPpl">–</b><span>người dự kiến đến</span></div>
+    <div><b id="sWish">–</b><span>lời chúc nhận được</span></div>
+  </section>
+  <div class="tools">
+    <input type="search" id="q" placeholder="Tìm theo tên thiệp…" aria-label="Tìm thiệp">
+    <div class="seg" role="group" aria-label="Lọc"><button data-f="all" aria-pressed="true">Tất cả</button><button data-f="wedding" aria-pressed="false">Thiệp cưới</button><button data-f="grad" aria-pressed="false">Tốt nghiệp</button><button data-f="off" aria-pressed="false">Đang đóng</button></div>
+  </div>
+  <div class="list" id="list"><p class="empty">Đang tải danh sách thiệp…</p></div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(function(){
+var $=function(s,r){return(r||document).querySelector(s)},items=[],filt='all',openResp={},confirmDel=null,cache={};
+function esc(v){return String(v==null?'':v).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function toast(t){var e=$('#toast');e.textContent=t;e.classList.add('show');clearTimeout(e._t);e._t=setTimeout(function(){e.classList.remove('show')},2200)}
+function api(u,o){return fetch(u,Object.assign({credentials:'same-origin',cache:'no-store'},o||{})).then(function(r){if(r.status===401){location.href='/?next=/quanly';throw new Error('Cần đăng nhập')}return r.json().then(function(j){if(!r.ok)throw new Error(j.error||'Có lỗi');return j})})}
+function fdate(t){if(!t)return'';var d=new Date(t);return d.toLocaleDateString('vi-VN')+' '+d.toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'})}
+function fev(s){if(!s)return'';var p=s.split('-');return p.length===3?p[2]+'/'+p[1]+'/'+p[0]:s}
+function link(it){return location.origin+'/'+it.kind+'/'+it.id}
+function copy(t){(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){toast('Đã sao chép link')},function(){prompt('Sao chép link:',t)})}
+function load(){return api('/api/thiep?list=1').then(function(j){items=j.items||[];draw()}).catch(function(e){$('#list').innerHTML='<p class="empty">'+esc(e.message)+'</p>'})}
+function draw(){
+  var tot={n:items.length,yes:0,ppl:0,wish:0};items.forEach(function(it){var s=it.stats[it.kind];tot.yes+=s.yes;tot.ppl+=s.people;tot.wish+=s.wish});
+  $('#sN').textContent=tot.n;$('#sYes').textContent=tot.yes;$('#sPpl').textContent=tot.ppl;$('#sWish').textContent=tot.wish;
+  var q=$('#q').value.trim().toLowerCase();
+  var L=items.filter(function(it){if(filt==='off')return it.off;if(filt!=='all'&&it.mode!==filt)return false;return!q||it.title.toLowerCase().indexOf(q)>=0});
+  if(!items.length){$('#list').innerHTML='<div class="empty"><b>Chưa có thiệp nào</b>Bấm “+ Thiệp cưới mới” hoặc “+ Thiệp tốt nghiệp mới” để bắt đầu. Thiệp được lưu lên mạng thì sẽ hiện ở đây.</div>';return}
+  if(!L.length){$('#list').innerHTML='<p class="empty">Không có thiệp nào khớp.</p>';return}
+  $('#list').innerHTML=L.map(function(it){var s=it.stats[it.kind],g=it.mode==='grad';
+    return '<article class="card'+(it.off?' off':'')+'" data-id="'+it.id+'">'+
+      '<div class="top"><h2>'+esc(it.title)+'</h2><span class="tag'+(g?'':' w')+'">'+(g?'🎓 Tốt nghiệp':'💍 Thiệp cưới')+'</span><span class="tag '+(it.off?'offt':'on')+'">'+(it.off?'Đang đóng':'Đang mở')+'</span></div>'+
+      '<div class="meta">'+(it.date?'<span>Ngày lễ: '+fev(it.date)+'</span>':'')+'<span>Sửa lần cuối: '+fdate(it.updated)+'</span>'+(s.last?'<span>Khách gửi gần nhất: '+fdate(s.last)+'</span>':'')+'</div>'+
+      '<div class="stats"><span><b>'+s.yes+'</b> nơi sẽ đến</span><span>khoảng <b>'+s.people+'</b> người</span><span><b>'+(s.rsvp-s.yes)+'</b> chưa chắc hoặc không đến</span><span><b>'+s.wish+'</b> lời chúc</span></div>'+
+      '<div class="link"><code>'+esc(link(it))+'</code><button class="btn" data-a="copy">Sao chép link</button></div>'+
+      '<div class="acts"><a class="btn pri" href="/studio?t='+it.id+'">Sửa thiệp</a><a class="btn" href="'+esc(link(it))+'" target="_blank" rel="noopener">Xem như khách</a><button class="btn" data-a="resp" aria-expanded="'+(!!openResp[it.id])+'">'+(openResp[it.id]?'Ẩn danh sách khách':'Khách xác nhận & lời chúc')+'</button><button class="btn" data-a="'+(it.off?'on':'off')+'">'+(it.off?'Mở lại thiệp':'Tạm đóng thiệp')+'</button><button class="btn danger" data-a="del">Xoá</button></div>'+
+      (confirmDel===it.id?'<div class="confirm"><p><b>Xoá hẳn thiệp này?</b> Link gửi khách sẽ không mở được nữa, danh sách xác nhận và lời chúc cũng bị xoá. Không khôi phục được. Nếu chỉ muốn tạm ngừng, hãy dùng “Tạm đóng thiệp”.</p><button class="btn danger" data-a="delyes">Xoá hẳn</button><button class="btn" data-a="delno">Giữ lại</button></div>':'')+
+      (openResp[it.id]?'<div class="resp" data-resp>'+respHTML(it)+'</div>':'')+
+    '</article>'}).join('')}
+function respHTML(it){var d=cache[it.id];if(!d)return'<p class="meta">Đang tải…</p>';
+  var L=(d[it.kind]||[]).slice().reverse(),rs=L.filter(function(x){return x.type==='rsvp'}),ws=L.filter(function(x){return x.wish});
+  if(!L.length)return'<p class="meta">Chưa có khách nào gửi xác nhận hoặc lời chúc.</p>';
+  return '<div class="acts"><button class="btn" data-a="csv">Tải file Excel (CSV)</button><button class="btn ghost" data-a="reload">Tải lại</button></div>'+
+    (rs.length?'<h3>Xác nhận tham dự ('+rs.length+')</h3>'+rs.map(function(x){return'<div class="row"><div class="rt"><b>'+esc(x.name)+'</b><small>'+fdate(x.t)+'</small></div><span>'+esc(x.attend||'')+(x.count?' · '+esc(x.count)+' người':'')+(x.event&&x.event!=='Tất cả'?' · '+esc(x.event):'')+'</span></div>'}).join(''):'')+
+    (ws.length?'<h3>Lời chúc ('+ws.length+')</h3>'+ws.map(function(x){return'<div class="row'+(x.hide?' hid':'')+'"><div class="rt"><b>'+esc(x.name)+'</b><small>'+fdate(x.t)+(x.hide?' · đang ẩn':'')+'</small><button class="btn ghost" data-w="'+(x.hide?'show':'hide')+'" data-t="'+x.t+'">'+(x.hide?'Hiện lại':'Ẩn')+'</button><button class="btn ghost" data-w="delete" data-t="'+x.t+'">Xoá</button></div><span>'+esc(x.wish)+'</span></div>'}).join(''):'')}
+function loadResp(id){return api('/api/khach?all=1&id='+id).then(function(d){cache[id]=d;draw()})}
+document.addEventListener('click',function(e){var b=e.target.closest('[data-a],[data-w],[data-f]');if(!b)return;
+  if(b.dataset.f){filt=b.dataset.f;document.querySelectorAll('[data-f]').forEach(function(x){x.setAttribute('aria-pressed',x===b)});draw();return}
+  var card=b.closest('.card'),id=card&&card.dataset.id,it=items.find(function(x){return x.id===id});if(!it)return;
+  if(b.dataset.w){b.disabled=true;api('/api/khach',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({id:id,kind:it.kind,t:+b.dataset.t,action:b.dataset.w})}).then(function(){return Promise.all([loadResp(id),load()])}).catch(function(x){toast(x.message)});return}
+  var a=b.dataset.a;
+  if(a==='copy')copy(link(it));
+  if(a==='resp'){openResp[id]=!openResp[id];draw();if(openResp[id])loadResp(id).catch(function(x){toast(x.message)})}
+  if(a==='reload')loadResp(id);
+  if(a==='csv'){var d=cache[id]||{},rows=[['Thời gian','Loại','Tên','Tham dự','Số người','Tiệc','Lời chúc']].concat((d[it.kind]||[]).map(function(x){return[new Date(x.t).toLocaleString('vi-VN'),x.type==='rsvp'?'Xác nhận':'Lời chúc',x.name,x.attend||'',x.count||'',x.event||'',x.wish||'']}));
+    var blob=new Blob(['﻿'+rows.map(function(r){return r.map(function(v){return'"'+String(v).replace(/"/g,'""')+'"'}).join(',')}).join('\r\n')],{type:'text/csv'}),u=URL.createObjectURL(blob),l=document.createElement('a');l.href=u;l.download='khach-'+it.title.replace(/[^\wÀ-ỹ]+/g,'-').slice(0,40)+'.csv';document.body.appendChild(l);l.click();l.remove();setTimeout(function(){URL.revokeObjectURL(u)},2000)}
+  if(a==='off'||a==='on'){b.disabled=true;api('/api/thiep',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({id:id,action:a})}).then(function(){toast(a==='off'?'Đã tạm đóng, khách mở link sẽ thấy thông báo thiệp đang đóng':'Đã mở lại thiệp');return load()}).catch(function(x){toast(x.message);b.disabled=false})}
+  if(a==='del'){confirmDel=id;draw()}
+  if(a==='delno'){confirmDel=null;draw()}
+  if(a==='delyes'){b.disabled=true;api('/api/thiep?id='+id,{method:'DELETE'}).then(function(){confirmDel=null;try{var o=JSON.parse(localStorage.getItem('bm-owner')||'{}');if(o.id===id)localStorage.removeItem('bm-owner')}catch(_){}toast('Đã xoá thiệp');return load()}).catch(function(x){toast(x.message);b.disabled=false})}
+});
+$('#q').addEventListener('input',draw);
+$('#out').onclick=function(){fetch('/api/vao',{method:'POST',headers:{'content-type':'application/json'},credentials:'same-origin',body:JSON.stringify({action:'logout'})}).finally(function(){location.href='/'})};
+load();
+})();
+</script>
+</body></html>
