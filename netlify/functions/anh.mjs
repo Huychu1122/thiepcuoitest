@@ -1,11 +1,12 @@
 // Lưu ảnh và nhạc của thiệp, đặt tên theo nội dung (trùng nội dung thì dùng lại)
 import { getStore } from "@netlify/blobs";
+import { authed } from "../lib/auth.mjs";
 
 const json = (o, s = 200) => new Response(JSON.stringify(o), { status: s, headers: { "content-type": "application/json; charset=utf-8" } });
 const MAX = 5_500_000;
 const OK = /^(image\/(jpeg|png|webp|gif|svg\+xml)|audio\/(mpeg|mp3|mp4|aac|ogg|wav|x-m4a|webm))$/;
 
-export async function handle(req, store) {
+export async function handle(req, store, cs) {
   const url = new URL(req.url);
   if (req.method === "GET") {
     const id = url.searchParams.get("id") || "";
@@ -15,6 +16,7 @@ export async function handle(req, store) {
     return new Response(r.data, { headers: { "content-type": r.metadata.type || "application/octet-stream", "cache-control": "public, max-age=31536000, immutable" } });
   }
   if (req.method === "POST") {
+    if (!(await authed(req, cs))) return json({ error: "Cần đăng nhập", login: true }, 401);
     const type = (req.headers.get("content-type") || "").split(";")[0].trim().toLowerCase();
     if (!OK.test(type)) return json({ error: "Chỉ nhận ảnh hoặc nhạc" }, 415);
     const buf = await req.arrayBuffer();
@@ -26,5 +28,5 @@ export async function handle(req, store) {
   return json({ error: "Không hỗ trợ" }, 405);
 }
 
-export default async (req) => handle(req, getStore({ name: "anh", consistency: "strong" }));
+export default async (req) => handle(req, getStore({ name: "anh", consistency: "strong" }), getStore({ name: "cauhinh", consistency: "strong" }));
 export const config = { path: "/api/anh" };

@@ -25,3 +25,10 @@ Mỗi người mở trang chủ đều tạo được thiệp riêng của mình
 ## Lưu ý về Netlify (gói miễn phí)
 
 Lưu thiệp và khách mở thiệp **không** cần đăng lại trang. Chỉ khi cập nhật mã nguồn (thêm mẫu mới) Netlify mới đăng lại một lần, trừ khoảng 15 trên 300 điểm miễn phí mỗi tháng. Lượt mở thiệp và tải ảnh cũng tính một ít điểm theo dung lượng, thiệp cá nhân thường dùng rất ít.
+
+
+## Bảo mật
+
+- Trang thiết kế nằm ở `/studio` và chỉ mở được khi đã đăng nhập bằng mật khẩu của chủ trang. Lần đầu vào trang chủ sẽ được hỏi tạo mật khẩu.
+- Khách mở link thiệp (`/c/<mã>` cho thiệp cưới, `/tn/<mã>` cho thiệp tốt nghiệp) chỉ nhận được trang thiệp, không có mã của trang thiết kế.
+- Quên mật khẩu: vào Netlify › Site configuration › Environment variables, thêm biến `BM_MATKHAU` với mật khẩu mới, rồi deploy lại.

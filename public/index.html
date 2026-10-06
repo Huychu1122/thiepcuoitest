@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E%F0%9F%92%8C%3C/text%3E%3C/svg%3E">
+<title>Bongmao Thiệp cưới</title>
+<script>
+/* Link thiệp kiểu cũ (?t=…) chuyển sang trang thiệp riêng, không bao giờ mở trang thiết kế cho khách */
+(function(){var q=new URLSearchParams(location.search),t=(q.get('t')||'').toLowerCase().replace(/[^a-z0-9]/g,'');if(!t)return;
+  if(q.get('k')){location.replace('/studio?t='+t+'&k='+encodeURIComponent(q.get('k'))+'#sua');return}
+  var h=location.hash.slice(1),dec=function(s){try{s=s.replace(/-/g,'+').replace(/_/g,'/');while(s.length%4)s+='=';return decodeURIComponent(escape(atob(s)))}catch(e){try{return decodeURIComponent(s)}catch(_){return''}}};
+  var kind=/^tn/.test(h)?'tn':'c',name=/^(to|tn)-/.test(h)?dec(h.slice(3)):'';
+  location.replace('/'+kind+'/'+t+(name?'?to='+encodeURIComponent(name):''))})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=Dancing+Script:wght@600&display=swap">
+<style>
+:root{--bg:#f4efe8;--card:#fffdf9;--ink:#2b2520;--muted:#776d62;--line:#e4dbd0;--son:#a3262a;--son2:#c94a45;--err:#b3261e}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171412;--card:#211d1a;--ink:#efe8e0;--muted:#a99f94;--line:#3a332d;--son:#e0716f;--son2:#e88a86;--err:#ff8a80}}
+:root[data-theme="dark"]{--bg:#171412;--card:#211d1a;--ink:#efe8e0;--muted:#a99f94;--line:#3a332d;--son:#e0716f;--son2:#e88a86;--err:#ff8a80}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;min-height:100dvh;display:grid;place-items:center;padding:24px 16px;background:radial-gradient(1200px 600px at 50% -10%,color-mix(in srgb,var(--son) 12%,transparent),transparent 60%),var(--bg);color:var(--ink);font:15px/1.55 'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif}
+.card{width:100%;max-width:380px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px 26px 24px;box-shadow:0 20px 50px rgba(60,30,20,.08)}
+.hy{display:block;text-align:center;color:var(--son);font:26px serif;margin-bottom:2px}
+h1{margin:0;text-align:center;font:600 38px/1.15 'Dancing Script',cursive;color:var(--ink)}
+.sub{margin:6px 0 22px;text-align:center;color:var(--muted);font-size:13.5px}
+h2{font-size:15px;font-weight:600;margin:0 0 6px}
+p.note{margin:0 0 16px;color:var(--muted);font-size:13px}
+label{display:grid;gap:5px;font-size:13px;color:var(--muted);margin-bottom:12px}
+input{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:11px 12px;width:100%}
+input:focus-visible,button:focus-visible{outline:2px solid var(--son);outline-offset:1px}
+button{width:100%;font:inherit;font-weight:600;border:0;border-radius:10px;padding:12px;background:var(--son);color:#fff;cursor:pointer;margin-top:4px}
+button:disabled{opacity:.6;cursor:wait}
+.err{color:var(--err);font-size:13px;min-height:20px;margin:8px 0 0;text-align:center}
+.foot{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted);text-align:center}
+.wait{text-align:center;color:var(--muted)}
+[hidden]{display:none!important}
+</style></head>
+<body>
+<main class="card">
+  <span class="hy" aria-hidden="true">囍</span>
+  <h1>Bongmao Thiệp cưới</h1>
+  <p class="sub">Trang thiết kế thiệp riêng của chủ trang</p>
+  <p class="wait" id="wait">Đang kiểm tra…</p>
+  <form id="fSetup" hidden>
+    <h2>Tạo mật khẩu lần đầu</h2>
+    <p class="note">Chỉ người có mật khẩu mới vào được trang thiết kế. Khách nhận link thiệp chỉ xem được thiệp, không cần mật khẩu.</p>
+    <label>Mật khẩu (ít nhất 6 ký tự)<input type="password" name="pass" autocomplete="new-password" minlength="6" required></label>
+    <label>Nhập lại mật khẩu<input type="password" name="pass2" autocomplete="new-password" minlength="6" required></label>
+    <button type="submit">Tạo mật khẩu và vào trang thiết kế</button>
+  </form>
+  <form id="fLogin" hidden>
+    <label>Mật khẩu<input type="password" name="pass" autocomplete="current-password" required autofocus></label>
+    <button type="submit">Vào trang thiết kế</button>
+  </form>
+  <p class="err" id="err" role="alert" aria-live="polite"></p>
+  <p class="foot">Bạn là khách được mời? Hãy mở đúng link thiệp người gửi cho bạn.</p>
+</main>
+<script>
+(function(){
+  var $=function(s){return document.querySelector(s)},err=$('#err');
+  var q=new URLSearchParams(location.search),next=q.get('next')||'';
+  if(!/^\/studio(\?|$)/.test(next))next='/studio';
+  var go=function(){location.replace(next+location.hash)};
+  function call(body){return fetch('/api/vao',{method:'POST',headers:{'content-type':'application/json'},credentials:'same-origin',body:JSON.stringify(body)}).then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(!r.ok)throw new Error(j.error||'Có lỗi, thử lại sau');return j})})}
+  function bind(f,fn){f.addEventListener('submit',function(e){e.preventDefault();err.textContent='';var b=f.querySelector('button');b.disabled=true;fn(f).then(go).catch(function(x){err.textContent=x.message;b.disabled=false})})}
+  bind($('#fSetup'),function(f){if(f.pass.value!==f.pass2.value)return Promise.reject(new Error('Hai lần nhập mật khẩu chưa giống nhau'));return call({action:'setup',pass:f.pass.value})});
+  bind($('#fLogin'),function(f){return call({action:'login',pass:f.pass.value})});
+  fetch('/api/vao',{credentials:'same-origin',cache:'no-store'}).then(function(r){return r.json()}).then(function(s){
+    if(s.in){go();return}$('#wait').hidden=true;var f=s.setup?$('#fLogin'):$('#fSetup');f.hidden=false;f.querySelector('input').focus()
+  }).catch(function(){$('#wait').textContent='Không kết nối được. Kiểm tra mạng rồi tải lại trang.'});
+})();
+</script>
+</body></html>
