@@ -266,6 +266,10 @@ input[type=range]{width:100%;accent-color:var(--son)}
 
     <!-- ============ 2. GIAO DIỆN ============ -->
     <div class="pane" id="pane-look" hidden>
+      <details class="sec" open><summary>Tự thiết kế bìa thiệp<span class="tag">Mới</span></summary><div class="sec-body">
+        <p class="hint">Tự kéo thả chữ, ô thông tin tự điền, ảnh, sticker, hình khối; thêm hiệu ứng xuất hiện và chuyển động cho từng thứ; lưu thành mẫu để dùng lại cho cả thiệp cưới và thiệp tốt nghiệp.</p>
+        <div class="chips"><button class="btn primary" data-dznew>Tạo mẫu mới</button><button class="btn" data-dzblank>Bắt đầu từ trang trắng</button><label class="btn">Mở mẫu (.json)<input type="file" data-dzimport accept=".json,application/json" hidden></label></div>
+        <div data-dzlib></div></div></details>
       <div class="chips" id="themeFilter" style="margin-bottom:10px"></div>
       <div class="themes" id="themes"></div>
 
@@ -389,6 +393,10 @@ input[type=range]{width:100%;accent-color:var(--son)}
         <p class="hint">Mẫu “Người nổi trên nền” dùng ảnh đã tách nền; mẫu “Poster” dùng nguyên ảnh, hợp cả ảnh nhóm và ảnh có phong cảnh trường.</p>
         <p class="hint">Mẹo tách nền miễn phí đẹp nhất: trên iPhone, mở ảnh, giữ ngón tay lên người trong ảnh rồi chọn Chia sẻ › Lưu ảnh. Trên Samsung: mở ảnh trong Bộ sưu tập, giữ vào người rồi chọn Lưu thành ảnh. Ảnh nhận được là PNG nền trong suốt, tải vào ô trên.</p>
         <button class="btn small ghost" id="gDelPhoto">Xoá ảnh, dùng hình minh hoạ</button>
+        <div class="card"><div class="card-head">Chỉnh ảnh chân dung trên bìa<button class="btn ghost small" id="gPaReset">Đặt lại</button></div>
+          <div class="row2"><label class="f">Phóng to, thu nhỏ<input type="range" min="0.5" max="1.6" step="0.02" data-gpa="zoom"></label><label class="f">Độ sáng<input type="range" min="0.6" max="1.4" step="0.02" data-gpa="bright"></label></div>
+          <div class="row2"><label class="f">Dịch ngang<input type="range" min="-150" max="150" step="1" data-gpa="x"></label><label class="f">Dịch lên, xuống<input type="range" min="-150" max="150" step="1" data-gpa="y"></label></div>
+          <label class="f">Hiệu ứng quanh người<select data-gpa="style"></select></label></div>
       </div></details>
       <details class="sec" open><summary>Thông tin tốt nghiệp</summary><div class="sec-body">
         <div class="row2"><label class="f">Họ và tên<input type="text" data-gk="name"></label><label class="f">Tên hiển thị lớn<input type="text" data-gk="nick" placeholder="ví dụ: Minh Anh"></label></div>
@@ -417,6 +425,16 @@ input[type=range]{width:100%;accent-color:var(--son)}
         <label class="f">Chọn nhiều ảnh (tối đa 12)<input type="file" id="gAlbumFile" accept="image/*" multiple></label>
         <div class="thumbs" id="gAlbumThumbs"></div>
       </div></details>
+      <details class="sec"><summary>Hành trình (dòng thời gian)</summary><div class="sec-body"><div id="gStory" class="links"></div><button class="btn" id="gStoryAdd">+ Thêm cột mốc</button></div></details>
+      <details class="sec"><summary>Video YouTube</summary><div class="sec-body">
+        <label class="f">Link video YouTube<input type="url" data-gv="url" placeholder="https://youtu.be/…"></label><label class="f">Chú thích dưới video<input type="text" data-gv="title"></label>
+        <p class="hint">Bật phần Video ở tab Giao diện › Các phần trên thiệp.</p></div></details>
+      <details class="sec"><summary>Mừng tốt nghiệp (QR chuyển khoản)<span class="tag">VietQR</span></summary><div class="sec-body">
+        <label class="toggle"><input type="checkbox" data-gk="giftFloat"> Nút “Mừng tốt nghiệp” nhỏ ở góc màn hình</label>
+        <div class="row2"><label class="f">Ngân hàng<select data-gg="bank" id="gBank"></select></label><label class="f">Số tài khoản<input type="text" inputmode="numeric" data-gg="acc"></label></div>
+        <div class="row2"><label class="f">Chủ tài khoản<input type="text" data-gg="holder"></label><label class="f">Nội dung chuyển khoản<input type="text" data-gg="note" maxlength="50"></label></div>
+        <div class="qrbox" id="gQrBox"></div><label class="f">Hoặc tải ảnh QR từ app ngân hàng<input type="file" id="gQrFile" accept="image/*"></label>
+        <p class="hint">Muốn hiện thêm một phần mừng tốt nghiệp trong thân thiệp, bật ở tab Giao diện › Các phần trên thiệp.</p></div></details>
       <details class="sec"><summary>Xác nhận tham dự và lời chúc</summary><div class="sec-body">
         <label class="f">Số điện thoại để khách nhắn xác nhận (tuỳ chọn)<input type="text" data-gk="phone" placeholder="09…"></label>
         <label class="f">Link điền sẵn Google Form (làm giống phần thiệp cưới, tuỳ chọn)<input type="url" data-gk="prefillUrl" placeholder="https://docs.google.com/forms/…"></label>
@@ -426,6 +444,10 @@ input[type=range]{width:100%;accent-color:var(--son)}
     </div>
     <!-- ============ TỐT NGHIỆP · 2. GIAO DIỆN ============ -->
     <div class="pane" id="gpane-look" hidden>
+      <details class="sec" open><summary>Tự thiết kế bìa thiệp<span class="tag">Mới</span></summary><div class="sec-body">
+        <p class="hint">Tự kéo thả chữ, ô thông tin tự điền, ảnh, sticker, hình khối; thêm hiệu ứng xuất hiện và chuyển động cho từng thứ; lưu thành mẫu để dùng lại cho cả thiệp cưới và thiệp tốt nghiệp.</p>
+        <div class="chips"><button class="btn primary" data-dznew>Tạo mẫu mới</button><button class="btn" data-dzblank>Bắt đầu từ trang trắng</button><label class="btn">Mở mẫu (.json)<input type="file" data-dzimport accept=".json,application/json" hidden></label></div>
+        <div data-dzlib></div></div></details>
       <div class="chips" id="gFilter" style="margin-bottom:10px"><button class="btn small" data-gfilter="all">Tất cả</button><button class="btn small" data-gfilter="cut">Người nổi trên nền (tách nền)</button><button class="btn small" data-gfilter="poster">Poster dùng nguyên ảnh</button><button class="btn small" data-gfilter="trend">Xu hướng mạng xã hội</button></div>
       <div class="themes" id="gthemes"></div>
       <details class="sec" open style="margin-top:14px"><summary>Màu và màn mở thiệp</summary><div class="sec-body">
@@ -443,13 +465,19 @@ input[type=range]{width:100%;accent-color:var(--son)}
         <label class="f">Màn mở thiệp tự biến mất sau: <b data-aoval="g"></b><input type="range" min="0" max="15" step="1" data-gk="autoOpen"></label>
         <p class="hint">Kéo về 0 nếu muốn khách tự chạm để mở. Khi đặt số giây, thiệp hiện lời chào, có thanh đếm giờ nhỏ, hết giờ thì tự mở. Nhạc vẫn bật ở lần chạm đầu tiên vì điện thoại chặn tự phát nhạc.</p>
       </div></details>
+      <details class="sec" open><summary>Chữ, hiệu ứng và bố cục</summary><div class="sec-body">
+        <div class="row2"><label class="f">Bộ font<select data-go="fonts"></select></label><label class="f">Cỡ chữ<select data-gk="scale"><option value="0.93">Nhỏ</option><option value="1">Vừa</option><option value="1.08">Lớn</option></select></label></div>
+        <label class="f">Cỡ tên trên bìa<input type="range" min="0.6" max="1.4" step="0.01" data-gk="nameScale"></label>
+        <div class="row2"><label class="f">Hạt lung linh<select data-go="fxA"></select></label><label class="f">Vật rơi, bay<select data-go="fxB"></select></label></div>
+        <div class="row2"><label class="f">Khi bấm mở thiệp<select data-go="burst"></select></label><label class="f">Mật độ hiệu ứng<select data-gk="density"><option value="0.55">Ít</option><option value="1">Vừa</option><option value="1.6">Nhiều</option></select></label></div>
+        <div class="row2"><label class="f">Các phần hiện ra khi cuộn<select data-go="reveal"></select></label><label class="f">Album ảnh<select data-go="album"></select></label></div>
+        <label class="f">Khung video<select data-go="videoFrame"></select></label>
+      </div></details>
+      <details class="sec"><summary>Chữ trên thiệp<span class="tag">Sửa mọi chữ</span></summary><div class="sec-body">
+        <p class="hint">Sửa tiêu đề từng phần ở mục Các phần trên thiệp ngay bên dưới. Các chữ khác (tiêu đề lớn, dòng mời, chữ trang trí tiếng Anh, lời mời, lời cảm ơn) ở tab Nội dung.</p></div></details>
       <details class="sec" open><summary>Các phần trên thiệp</summary><div class="sec-body">
-        <label class="toggle"><input type="checkbox" data-gsec="info"> Thông tin tấm bằng</label>
-        <label class="toggle"><input type="checkbox" data-gsec="countdown"> Đếm ngược</label>
-        <label class="toggle"><input type="checkbox" data-gsec="event"> Thời gian và địa điểm</label>
-        <label class="toggle"><input type="checkbox" data-gsec="album"> Album ảnh</label>
-        <label class="toggle"><input type="checkbox" data-gsec="rsvp"> Xác nhận tham dự</label>
-        <label class="toggle"><input type="checkbox" data-gsec="wish"> Lời chúc mừng</label>
+        <p class="hint">Bỏ chọn để ẩn, dùng mũi tên để đổi thứ tự, sửa ô chữ để đổi tiêu đề.</p>
+        <ul class="order" id="gorder"></ul>
       </div></details>
     </div>
     <!-- ============ TỐT NGHIỆP · 3. GỬI KHÁCH ============ -->
@@ -958,7 +986,9 @@ function migrate(o){const map={truyenthong:'songhy',langman:'anhdao',vuitoi:'keo
   if(o.v<3){if(!o.musicPreset||o.musicPreset==='canon')o.musicPreset='lib:canon-in-d-harps';if(o.salAuto===undefined)o.salAuto=true;if(!o.salTpl)o.salTpl={};o.v=3}
   o.labels=o.labels||{};o.coverAdj={...SAMPLE.coverAdj,...(o.coverAdj||{})};o.video={...SAMPLE.video,...(o.video||{})};
   if(o.giftFloat===undefined)o.giftFloat=true;if(o.autoOpen===undefined)o.autoOpen=0;if(o.greet===undefined)o.greet='';
-  o.grad={...structuredClone(GRAD_SAMPLE),...(o.grad||{})};o.grad.sec={...GRAD_SAMPLE.sec,...(o.grad.sec||{})};if(!GTHEMES[o.grad.theme])o.grad.theme='popyear';if(!o.mode)o.mode='wedding';
+  o.grad={...structuredClone(GRAD_SAMPLE),...(o.grad||{})};o.grad.sec={...GRAD_SAMPLE.sec,...(o.grad.sec||{})};
+  if(!Array.isArray(o.grad.order)){const sc=o.grad.sec||{};o.grad.order=GSEC_IDS.map(id=>({id,on:id==='video'||id==='gift'?false:sc[id]!==false}))}else GSEC_IDS.forEach(id=>{if(!o.grad.order.find(x=>x.id===id))o.grad.order.push({id,on:false})});
+  o.grad.titles=o.grad.titles||{};o.grad.over=o.grad.over||{};o.grad.pa={...GRAD_SAMPLE.pa,...(o.grad.pa||{})};if(!Array.isArray(o.grad.story))o.grad.story=[];o.grad.video={url:'',title:'',...(o.grad.video||{})};o.grad.gift={...GRAD_SAMPLE.gift,...(o.grad.gift||{})};if(!Array.isArray(o.designs))o.designs=[];if(!GTHEMES[o.grad.theme])o.grad.theme='popyear';if(!o.mode)o.mode='wedding';
   ['giftGroom','giftBride'].forEach(k=>{o[k]={...SAMPLE[k],...(o[k]||{})}});return o}
 function load(){let d=null;try{const t=localStorage.getItem('xtc-state');if(t){d=JSON.parse(t);let m={};try{m=JSON.parse(localStorage.getItem('xtc-media')||'{}')}catch(_){}
     if(m.cover)d.cover=m.cover;if(m.photos)d.photos=m.photos;if(m.music)d.music=m.music;if(m.bgPhoto)d.bgPhoto=m.bgPhoto;d.giftGroom={...(d.giftGroom||{}),qr:m.qrG||''};d.giftBride={...(d.giftBride||{}),qr:m.qrB||''};try{const gm=JSON.parse(localStorage.getItem('xtc-gmedia')||'{}');if(d.grad)Object.assign(d.grad,gm)}catch(_){}}}catch(e){d=null}
@@ -1182,15 +1212,15 @@ function buildInvite(s,opt={}){
     fx:{a:E.fxA,b:E.fxB,burst:E.burst,density:+s.density||1,colors:[P.accent,P.accent2,P.leaf],dark:lum(P.paper)<.4}};
   const nameFont=F.names==='d';
   const vars=`--bg:${P.bg};--paper:${P.paper};--ink:${P.ink};--muted:${P.muted};--accent:${P.accent};--accent2:${P.accent2};--band:${P.band};--leaf:${P.leaf};--dF:${fam(F.d,'d')};--sF:${fam(F.s,'s')};--bF:${fam(F.b,'b')};--nF:${nameFont?fam(F.d,'d'):fam(F.s,'s')};--dW:${F.dw||500};--dT:${F.dt||'none'};--dLS:${F.dls||'0'};--nT:${nameFont?(F.dt||'none'):'none'};--nLS:${nameFont?(F.dls||'0'):'0'};--scale:${s.scale||1};--ns:${s.nameScale||1};--bgblur:${s.bgBlur||0}px;--bgdim:${s.bgDim||.92};--pattern:${patternUrl(E.pattern,P)};--noise:${NOISE};--tile:${E.decor==='lemon'?TILE(P,.95):'none'};--glass:${E.decor==='stained'?PATTERN2.glass(P):'none'};--on-accent:${lum(P.accent)>.6?'#1d160b':'#fff'};--on-accent2:${lum(P.accent2)>.6?'#1d160b':'#fff'};`;
-  const fams=[F.d,F.s,F.b,'Be Vietnam Pro','SVN Abril'];
+  const fams=[F.d,F.s,F.b,'Be Vietnam Pro','SVN Abril',...dzFonts(s.heroDesign)];
   const bgSrc=E.bgMode==='photo'?(s.bgPhoto||coverSrc):'';
   return`<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>${esc(title)}</title><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(fmtDate(s.date))} · Trân trọng kính mời bạn đến chung vui"><meta name="description" content="${esc(title)} · ${esc(fmtDate(s.date))}"><meta name="theme-color" content="${P.bg}">
 ${googleLink(fams)}
-<style>${fontFaces(fams)}:root{${vars}}${INVITE_CSS}</style></head>
+<style>${fontFaces(fams)}:root{${vars}}${INVITE_CSS}${DESIGN_CSS}</style></head>
 <body class="th-${s.theme} dec-${E.decor} rv-${E.reveal} host-${host}${bgSrc?' bgph-on':''}${E.hero==='bgfull'?' herofull':''}${E.shimmer?' shimmer':''}${E.wash?' wash':''}${cfg.fx.dark?' dark':''}${E.intro!=='none'&&!opt.skipIntro?' locked intro-on':''}${E.intro==='iris'&&!opt.skipIntro?' iris':''}">
 ${bgSrc?`<div class="bgph" style="background-image:url('${bgSrc}')"></div>`:''}${opt.skipIntro?'':introHTML(E,s,a,b,i1,i2)}<canvas class="fxc" id="fxc" aria-hidden="true"></canvas>
-<main class="wrap">${hero}${body}<footer class="end">${div?`<div class="orn">${div}</div>`:''}<p class="thanks">${esc(s.closing||'Cảm ơn bạn')}</p><p>${esc(a)} &amp; ${esc(b)}</p>${shareOk?`<button class="btn ghost share-open" data-share>${lab(s,'shareBtn')}</button>`:''}${LIB?`<p class="credit">Nhạc nền: ${esc(TRACKS[LIB][0].split(' · ')[0])} · ${esc(TRACKS[LIB][1])} · ${TRACKS[LIB][2]}</p>`:''}</footer></main>
+<main class="wrap">${s.heroDesign?`<header class="hero hero-design">${renderDesign(s.heroDesign,dzCtx('wedding',s,samp))}</header>`:hero}${body}<footer class="end">${div?`<div class="orn">${div}</div>`:''}<p class="thanks">${esc(s.closing||'Cảm ơn bạn')}</p><p>${esc(a)} &amp; ${esc(b)}</p>${shareOk?`<button class="btn ghost share-open" data-share>${lab(s,'shareBtn')}</button>`:''}${LIB?`<p class="credit">Nhạc nền: ${esc(TRACKS[LIB][0].split(' · ')[0])} · ${esc(TRACKS[LIB][1])} · ${TRACKS[LIB][2]}</p>`:''}</footer></main>
 ${shareOk?`<div class="sheet" id="shm" hidden role="dialog" aria-modal="true" aria-labelledby="shT"><div class="sheet-bg" data-close></div><div class="sheet-card"><button class="sheet-x" data-close aria-label="Đóng">×</button><h2 id="shT">${lab(s,'shareBtn')}</h2><p class="muted center">Nhập tên người nhận để tạo link mời riêng, rồi gửi qua Zalo, Messenger…</p><form class="fm" id="shf"><label>Tên người nhận<input id="shn" maxlength="60" placeholder="ví dụ: anh Tuấn và chị Hà"></label><label>Link mời<textarea id="shl" rows="2" readonly></textarea></label><div class="ev-actions center"><button class="btn" type="submit">Sao chép lời mời</button><button class="btn ghost" type="button" data-copylink>Chỉ sao chép link</button></div><p class="fm-msg" aria-live="polite"></p></form></div></div>`:''}
 <div class="dock">${!shareOk&&opt.guestShare?GSHARE_BTN:''}${shareOk?`<button class="dk share-dk" data-share aria-label="${lab(s,'shareBtn')}"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="18" cy="5" r="2.6"/><circle cx="6" cy="12" r="2.6"/><circle cx="18" cy="19" r="2.6"/><path d="M8.3 10.8l7.4-4.3M8.3 13.2l7.4 4.3"/></svg></button>`:''}${hasMusic?`<span class="mwrap"><span class="mhint">${lab(s,'tapMusic')}</span><button class="dk music" id="mbtn" aria-label="Bật nhạc" aria-pressed="false"><span></span><span></span><span></span></button></span>`:''}
 ${giftFloat?`<button class="dk gift-btn" id="gbtn" aria-haspopup="dialog">${GIFT_ICON}<b>${lab(s,'giftBtn')}</b></button>`:''}</div>
@@ -2235,7 +2265,7 @@ function renderBreaks(){const n=Math.max(S.photos.length,7);const pos=[['hero','
     <div class="row2"><label class="f">Kiểu<select data-br="style">${Object.entries(BREAKS).map(([k,v])=>`<option value="${k}" ${br.style===k?'selected':''}>${v}</option>`).join('')}</select></label><label class="f">Vị trí<select data-br="after">${pos.map(([k,v])=>`<option value="${k}" ${br.after===k?'selected':''}>${v}</option>`).join('')}</select></label></div>
     <label class="f">Ảnh<select data-br="photo"><option value="0" ${+br.photo===0?'selected':''}>Ảnh bìa</option>${Array.from({length:n},(_,k)=>`<option value="${k+1}" ${+br.photo===k+1?'selected':''}>Ảnh album ${k+1}</option>`).join('')}</select></label>
     <label class="f">Chữ lớn<input type="text" data-br="text" value="${esc(br.text||'')}"></label><label class="f">Chữ nhỏ<input type="text" data-br="sub" value="${esc(br.sub||'')}"></label></div>`).join('')}
-function renderAll(){renderLabels();renderSal();renderBreaks();renderCover();fillBasics();renderEvents();renderStory();renderGift();renderPhotos();renderThemes();renderLook();renderOrder();renderDress();renderMusic();renderForm();renderGuests();update(true)}
+function renderAll(){renderLabels();renderSal();dzRenderLib();renderBreaks();renderCover();fillBasics();renderEvents();renderStory();renderGift();renderPhotos();renderThemes();renderLook();renderOrder();renderDress();renderMusic();renderForm();renderGuests();update(true)}
 
 /* Xem trước */
 let skipIntro=true,timer;
@@ -2749,12 +2779,281 @@ ${Array.from({length:22},(_,i)=>`.play .tt>*:nth-child(${i+1}){animation-delay:$
 .zn-k{font:600 12px var(--bF);letter-spacing:.06em}.zn-t{margin:2px 0 12px;font:400 34px/1.05 'SVN Abril',var(--dF)}
 `;
 
+const GSEC_IDS=['invite','info','countdown','event','story','video','album','rsvp','wish','gift'];
+const GSEC_NAMES={invite:'Lời mời',info:'Thông tin tấm bằng',countdown:'Đếm ngược',event:'Thời gian và địa điểm',story:'Hành trình',video:'Video YouTube',album:'Album ảnh',rsvp:'Xác nhận tham dự',wish:'Lời chúc mừng',gift:'Mừng tốt nghiệp (QR)'};
+const GSEC_TITLES={invite:'Trân trọng kính mời',info:'Tấm bằng của mình',countdown:'Còn lại',event:'Thời gian và địa điểm',story:'Hành trình của mình',video:'Thước phim kỷ niệm',album:'Khoảnh khắc',rsvp:'Bạn sẽ đến chứ?',wish:'Lời chúc mừng',gift:'Mừng tốt nghiệp'};
+const GPA_STYLES={'':'Theo mẫu',none:'Không hiệu ứng',shadow:'Đổ bóng',outline:'Viền trắng kiểu sticker',glow:'Toả sáng'};
+/* ======================= XƯỞNG THIẾT KẾ: tự thiết kế bìa thiệp, lưu mẫu ======================= */
+const DZ_W=360,DZ_H=640;
+const DZ_FONTS=[...new Set(['SVN Flamingo','SVN Aaron','SVN Rosalinda','SVN Wallows','SVN Amethyst','SVN Cherryla','SVN Helga','SVN Hollie','SVN Tamarindo','SVN Swashington','SVN Abril','SVN Sunday','SVN Servetica','SVN Paris','SVN Nexa','SVN Bariol','Playfair Display','Cormorant Garamond','Great Vibes','Dancing Script','Lora','Noto Serif','Be Vietnam Pro'])];
+const DZ_IN={none:'Không',fade:'Mờ dần',up:'Trồi lên',down:'Rơi xuống',left:'Trượt từ trái',right:'Trượt từ phải',zoom:'Phóng to',pop:'Nảy ra',rot:'Xoay vào',blur:'Rõ dần từ mờ',wipe:'Hiện dần từ trái',flip:'Lật',drop:'Rơi nảy'};
+const DZ_LOOP={none:'Không',float:'Bồng bềnh',pulse:'Nhịp đập',spin:'Xoay tròn',sway:'Đung đưa',wiggle:'Lắc nhẹ',shine:'Ánh sáng lướt qua',glow:'Toả sáng',heartbeat:'Tim đập',blink:'Nhấp nháy'};
+const DZ_FIELDS={wedding:[['couple','Tên hai bạn (A & B)'],['a','Tên người thứ nhất'],['b','Tên người thứ hai'],['initials','Chữ cái đầu (B & A)'],['date','Ngày (20.12.2026)'],['dateLong','Thứ, ngày tháng'],['day','Ngày (số)'],['month','Tháng (số)'],['year','Năm'],['lunar','Ngày âm lịch'],['time','Giờ'],['place','Nơi tổ chức'],['address','Địa chỉ'],['guest','Tên khách mời'],['invite','Lời mời']],
+  grad:[['nick','Tên hiển thị'],['name','Họ và tên'],['title','Tiêu đề (Lễ tốt nghiệp…)'],['school','Trường'],['degree','Học vị'],['major','Chuyên ngành'],['cls','Khoá'],['year','Năm tốt nghiệp'],['date','Ngày (19.12.2026)'],['dateLong','Thứ, ngày tháng'],['day','Ngày (số)'],['month','Tháng (số)'],['time','Giờ'],['place','Nơi tổ chức'],['address','Địa chỉ'],['guest','Tên khách mời'],['invite','Lời mời']]};
+const DZ_STK={cap:['Mũ tốt nghiệp',(a,b)=>CAP_SVG(a,b),'#1f2433','#d9b25b'],bow:['Nơ lụa',(a,b)=>STK.bow(a,b),'#f4a7b9','#e07a96'],butterfly:['Bướm',a=>STK.butterfly(a),'#f6b8c8'],ribbon:['Ruy băng',a=>STK.ribbon(a),'#f2a6b6'],
+  camera:['Máy ảnh',()=>STK.camera()],gstar:['Sao kim tuyến',a=>STK.gstar(a),'#c1121f'],sstar:['Sao bạc',()=>STK.sstar()],star4:['Sao lấp lánh',a=>STAR4(a),'#f4c542'],lips:['Môi son',()=>STK.lips()],smiley:['Mặt cười',()=>STK.smiley()],mega:['Loa',()=>STK.mega()],cat:['Mèo',()=>STK.cat()],
+  peonies:['Hoa mẫu đơn',(a,b)=>STK.peonies(a,b),'#f4b9c2','#f8d5da'],laurel:['Nguyệt quế',a=>LAUREL(a),'#d8b65f'],leaf:['Cành lá',(a,b)=>LEAF_BR(a,b),'#5f7d55','#e6b8a2'],cloud:['Mây',a=>CLOUD(a),'#ffffff'],
+  heart:['Trái tim',a=>`<svg viewBox="0 0 100 92"><path d="M50 90C-18 46 6 -16 50 16C94 -16 118 46 50 90Z" fill="${a}"/></svg>`,'#e05a7a'],
+  rings:['Nhẫn cưới',(a,b)=>`<svg viewBox="0 0 120 80"><circle cx="45" cy="45" r="28" fill="none" stroke="${a}" stroke-width="7"/><circle cx="75" cy="45" r="28" fill="none" stroke="${b}" stroke-width="7"/><path d="M38 12l7-8 7 8-7 6z" fill="#cfe9ff" stroke="${a}" stroke-width="2"/></svg>`,'#d9b25b','#c9ced6'],
+  hy:['Chữ Hỷ',a=>`<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="none" stroke="${a}" stroke-width="3"/><text x="50" y="68" text-anchor="middle" font-size="56" font-family="serif" fill="${a}">囍</text></svg>`,'#c1121f'],
+  ...Object.fromEntries(['rose','sakura','garden','lotus','pressed','olive'].map(k=>['corner-'+k,['Góc hoạ tiết · '+(DECORS[k]||k),(a,b)=>decorCorner(k,{accent:a,accent2:b,leaf:'#7d9a6a',paper:'#ffffff',ink:'#333333',bg:'#ffffff',band:'#ffffff',muted:'#999999'}),'#c97a8a','#f2c4cf']]))};
+const DZ_SHAPES={rect:'Chữ nhật',round:'Bo góc',circle:'Tròn',arch:'Vòm',heart:'Trái tim',star:'Ngôi sao',blob:'Giọt mềm',line:'Đường kẻ',frame:'Khung viền'};
+const DZ_MASKS={none:'Giữ nguyên',rounded:'Bo góc',circle:'Tròn',arch:'Vòm',heart:'Trái tim'};
+
+function dzCtx(mode,s,samp){
+  if(mode==='grad'){const g=s,[Y,M,D]=(g.date||'').split('-');const P=gCut(g,samp);
+    return{mode,f:{nick:g.nick||g.name,name:g.name,title:g.title,school:g.school,degree:g.degree,major:g.major,cls:g.cls,year:g.year||Y,date:fmtDate(g.date),dateLong:[weekday(g.date),fmtDate(g.date)].filter(Boolean).join(', '),day:D?+D:'',month:M?+M:'',time:g.time,place:g.place,address:g.address,invite:g.invite},
+      ph:{cover:gPhotoSrc(g,samp,0)||P.src,cut:P.src,album1:(g.photos||[])[0]||gPhotoSrc(g,samp,1),album2:(g.photos||[])[1]||gPhotoSrc(g,samp,0)}}}
+  const a=first(s),b=second(s),[i1,i2]=initials(s),[Y,M,D]=(s.date||'').split('-'),ev=(s.events||[]).find(e=>e.date===s.date)||(s.events||[])[0]||{},evL=(s.events||[])[(s.events||[]).length-1]||{};
+  const sp=samp?samplePhotos():[];
+  return{mode,f:{couple:`${a} & ${b}`,a,b,initials:`${i1} & ${i2}`,date:fmtDate(s.date),dateLong:[weekday(s.date),fmtDate(s.date)].filter(Boolean).join(', '),day:D?+D:'',month:M?+M:'',year:Y||'',lunar:Lunar.text(s.date),time:ev.time||'',place:evL.place||'',address:evL.address||'',invite:s.invite},
+    ph:{cover:s.cover||sp[0]||'',cut:s.cover||sp[0]||'',album1:(s.photos||[])[0]||sp[1]||'',album2:(s.photos||[])[1]||sp[2]||''}}}
+function dzText(t,ctx){return esc(t||'').replace(/\{(\w+)\}/g,(m,k)=>k==='guest'?'<span data-guest>bạn</span>':esc(ctx.f[k]??'')).replace(/\n/g,'<br>')}
+function dzShape(e){const f=e.fill2?`linear-gradient(${e.ang||135}deg,${e.fill},${e.fill2})`:(e.fill||'#e8d9c8'),st=e.sw?`;box-shadow:inset 0 0 0 ${e.sw}px ${e.stroke||'#000'}`:'';
+  switch(e.kind){case'circle':return`<i class="dz-sh" style="background:${f};border-radius:50%${st}"></i>`;case'round':return`<i class="dz-sh" style="background:${f};border-radius:${e.rad??18}px${st}"></i>`;case'arch':return`<i class="dz-sh" style="background:${f};border-radius:999px 999px 0 0${st}"></i>`;
+    case'line':return`<i class="dz-sh" style="background:${f};height:auto;top:calc(50% - ${(e.sw||2)/2}px);bottom:calc(50% - ${(e.sw||2)/2}px)"></i>`;case'frame':return`<i class="dz-sh" style="border:${e.sw||3}px solid ${e.stroke||e.fill||'#b48a5a'};border-radius:${e.rad??0}px"></i>`;
+    case'heart':case'star':case'blob':{const d={heart:'M50 90C-18 46 6 -16 50 16C94 -16 118 46 50 90Z',star:'M50 4L62 36L96 38L69 59L79 94L50 74L21 94L31 59L4 38L38 36Z',blob:'M52 6C76 6 96 22 94 48C92 74 74 94 48 94C22 94 6 76 6 50C6 24 28 6 52 6Z'}[e.kind];const id='g'+(e.id||'x');
+      return`<svg class="dz-sh" viewBox="0 0 100 100" preserveAspectRatio="none"><defs><linearGradient id="${id}" gradientTransform="rotate(${(e.ang||135)-90} .5 .5)"><stop offset="0" stop-color="${e.fill||'#e8d9c8'}"/><stop offset="1" stop-color="${e.fill2||e.fill||'#e8d9c8'}"/></linearGradient></defs><path d="${d}" fill="url(#${id})" ${e.sw?`stroke="${e.stroke||'#000'}" stroke-width="${e.sw}"`:''}/></svg>`}
+    default:return`<i class="dz-sh" style="background:${f}${st}"></i>`}}
+function dzInner(e,ctx){
+  switch(e.t){
+  case'text':{const st=`font-family:'${e.font||'Be Vietnam Pro'}',serif;--fs:${e.size||24};color:${e.color||'#222'};font-weight:${e.wt||400};text-align:${e.al||'center'};letter-spacing:${e.ls||0}em;line-height:${e.lh||1.2};${e.up?'text-transform:uppercase;':''}${e.shadow?'text-shadow:0 2px 10px rgba(0,0,0,.35);':''}${e.stroke?`-webkit-text-stroke:${e.strokeW||1}px ${e.stroke};`:''}${e.grad?`background:linear-gradient(${e.ang||90}deg,${e.color||'#222'},${e.grad});-webkit-background-clip:text;background-clip:text;color:transparent;`:''}${e.italic?'font-style:italic;':''}`;
+    return`<div class="dz-tx" style="${st}">${dzText(e.txt,ctx)}</div>`}
+  case'sticker':{const d=DZ_STK[e.kind];return d?`<div class="dz-svg">${d[1](e.c1||d[2],e.c2||d[3])}</div>`:''}
+  case'shape':return dzShape(e);
+  case'img':case'photo':{const src=e.t==='img'?e.src:(ctx.ph[e.which||'cover']||'');if(!src)return ctx.live?'':`<div class="dz-ph-empty">Ảnh</div>`;
+    const m=e.mask||'none',rad={rounded:`${e.rad??18}px`,circle:'50%',arch:'999px 999px 0 0'}[m]||'0';
+    return`<img class="dz-img${m==='heart'?' dz-heart':''}${e.outline?' dz-outl':''}" src="${src}" alt="" draggable="false" style="object-fit:${e.fit||'cover'};object-position:${e.pos||'50% 40%'};border-radius:${rad};${e.bw?`box-shadow:0 0 0 ${e.bw}px ${e.bc||'#ffffff'}${e.sh?',0 14px 28px rgba(0,0,0,.3)':''};`:(e.sh?'box-shadow:0 14px 28px rgba(0,0,0,.3);':'')}${e.filter&&e.filter!=='none'?`filter:${{bw:'grayscale(1)',warm:'sepia(.25) saturate(1.2)',soft:'contrast(.9) brightness(1.06)',vintage:'sepia(.4) contrast(.95)',cool:'hue-rotate(-12deg) saturate(1.1)'}[e.filter]||'none'};`:''}">`}
+  }return''}
+function dzBg(d,ctx){const b=d.bg||{};if(b.mode==='photo'){const src=ctx.ph[b.which||'cover']||'';return`background:#111;--dzbg:url('${src}');--dzblur:${b.blur||0}px;--dzdim:${b.dim??.85}`}
+  if(b.mode==='grad')return`background:${b.radial?`radial-gradient(circle at 50% 30%,${b.c1||'#fff'},${b.c2||'#eee'})`:`linear-gradient(${b.ang||160}deg,${b.c1||'#fff'},${b.c2||'#eee'})`}`;return`background:${b.c1||'#fff8f2'}`}
+function renderDesign(d,ctx,o={}){if(!d)return'';const els=(d.els||[]);ctx={...ctx,live:!o.edit};
+  return`<div class="dz${o.edit?' dz-edit':' dz-live'}${(d.bg||{}).mode==='photo'?' dz-hasbg':''}" style="${dzBg(d,ctx)}">${els.map((e,i)=>{const inA=(e.anim&&e.anim.in)||'none',lp=(e.anim&&e.anim.loop)||'none';
+    return`<div class="dz-el dzi-${inA}" data-id="${e.id}" style="left:${(e.x/DZ_W*100).toFixed(3)}%;top:${(e.y/DZ_H*100).toFixed(3)}%;width:${(e.w/DZ_W*100).toFixed(3)}%;height:${(e.h/DZ_H*100).toFixed(3)}%;rotate:${e.rot||0}deg;opacity:${e.op??1};z-index:${i+1};--d:${(e.anim&&e.anim.d)||0}s;--du:${(e.anim&&e.anim.du)||1}s;--ld:${(e.anim&&e.anim.ld)||3}s"><div class="dz-in dzl-${lp}">${dzInner(e,ctx)}</div></div>`}).join('')}</div>`}
+function dzFonts(d){return[...new Set((d&&d.els||[]).filter(e=>e.t==='text').map(e=>e.font||'Be Vietnam Pro'))]}
+const DESIGN_CSS=`
+.dz{position:relative;width:100%;aspect-ratio:${DZ_W}/${DZ_H};overflow:hidden;container-type:inline-size;isolation:isolate}
+.dz-hasbg::before{content:"";position:absolute;inset:-20px;background:var(--dzbg) center/cover;filter:blur(var(--dzblur)) brightness(var(--dzdim));z-index:0}
+.dz-el{position:absolute;transform-origin:50% 50%;box-sizing:border-box}
+.dz-in{width:100%;height:100%;position:relative}
+.dz-tx{width:100%;height:100%;font-size:calc(var(--fs) * 100cqw / ${DZ_W});white-space:normal;overflow-wrap:anywhere;display:flex;flex-direction:column;justify-content:center}
+.dz-tx[style*="text-align:left"]{align-items:flex-start}.dz-tx[style*="text-align:right"]{align-items:flex-end}
+.dz-svg,.dz-svg svg{width:100%;height:100%;display:block}
+.dz-sh{position:absolute;inset:0;width:100%;height:100%;display:block}
+.dz-img{width:100%;height:100%;display:block}
+.dz-heart{-webkit-mask:${HEART_MASK} center/100% 100% no-repeat;mask:${HEART_MASK} center/100% 100% no-repeat}
+.dz-outl{filter:drop-shadow(3px 0 0 #fff) drop-shadow(-3px 0 0 #fff) drop-shadow(0 3px 0 #fff) drop-shadow(0 -3px 0 #fff) drop-shadow(0 10px 14px rgba(0,0,0,.3))}
+.dz-ph-empty{width:100%;height:100%;display:grid;place-items:center;background:repeating-linear-gradient(45deg,#eee 0 10px,#f7f7f7 10px 20px);color:#999;font:600 12px system-ui}
+.dz-el{animation:var(--dzk,none) var(--du) cubic-bezier(.2,.8,.2,1) var(--d) both}
+.dzi-fade{--dzk:dzFade}.dzi-up{--dzk:dzUp}.dzi-down{--dzk:dzDown}.dzi-left{--dzk:dzLeft}.dzi-right{--dzk:dzRight}.dzi-zoom{--dzk:dzZoom}.dzi-pop{--dzk:dzPop}.dzi-rot{--dzk:dzRot}.dzi-blur{--dzk:dzBlur}.dzi-wipe{--dzk:dzWipe}.dzi-flip{--dzk:dzFlip}.dzi-drop{--dzk:dzDrop}
+@keyframes dzFade{from{opacity:0}}@keyframes dzUp{from{opacity:0;transform:translateY(40px)}}@keyframes dzDown{from{opacity:0;transform:translateY(-40px)}}@keyframes dzLeft{from{opacity:0;transform:translateX(-60px)}}@keyframes dzRight{from{opacity:0;transform:translateX(60px)}}
+@keyframes dzZoom{from{opacity:0;transform:scale(.6)}}@keyframes dzPop{0%{opacity:0;transform:scale(.3)}60%{opacity:1;transform:scale(1.12)}80%{transform:scale(.95)}100%{transform:none}}@keyframes dzRot{from{opacity:0;transform:rotate(-120deg) scale(.5)}}
+@keyframes dzBlur{from{opacity:0;filter:blur(14px);transform:scale(1.06)}}@keyframes dzWipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}@keyframes dzFlip{from{opacity:0;transform:perspective(600px) rotateY(90deg)}}
+@keyframes dzDrop{0%{opacity:0;transform:translateY(-120px)}60%{opacity:1;transform:translateY(10px)}80%{transform:translateY(-6px)}100%{transform:none}}
+.dz-in{animation:var(--dzl,none) var(--ld) ease-in-out calc(var(--d) + var(--du)) infinite}
+.dzl-float{--dzl:dzFloat}.dzl-pulse{--dzl:dzPulse}.dzl-spin{--dzl:dzSpin;animation-timing-function:linear}.dzl-sway{--dzl:dzSway}.dzl-wiggle{--dzl:dzWiggle}.dzl-glow{--dzl:dzGlow}.dzl-heartbeat{--dzl:dzBeat}.dzl-blink{--dzl:dzBlink}
+@keyframes dzFloat{50%{transform:translateY(-8%)}}@keyframes dzPulse{50%{transform:scale(1.07)}}@keyframes dzSpin{to{transform:rotate(360deg)}}@keyframes dzSway{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
+@keyframes dzWiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-4deg)}75%{transform:rotate(4deg)}}@keyframes dzGlow{50%{filter:drop-shadow(0 0 12px rgba(255,255,255,.95)) brightness(1.15)}}
+@keyframes dzBeat{0%,40%,100%{transform:scale(1)}20%{transform:scale(1.14)}30%{transform:scale(.97)}}@keyframes dzBlink{50%{opacity:.35}}
+.dzl-shine{overflow:hidden}.dzl-shine::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.75) 50%,transparent 65%) -150% 0/200% 100% no-repeat;mix-blend-mode:soft-light;animation:dzShine var(--ld) ease-in-out infinite;pointer-events:none}
+@keyframes dzShine{0%,40%{background-position:-150% 0}100%{background-position:250% 0}}
+.anim:not(.play) .dz-live .dz-el,.anim:not(.play) .dz-live .dz-in{animation-play-state:paused}
+.dz-edit:not(.dz-play) .dz-el,.dz-edit:not(.dz-play) .dz-in,.dz-edit:not(.dz-play) .dz-in::after{animation:none!important}
+.hero.hero-design{padding:0!important;background:none!important;display:block!important}
+.gh.gh-design{height:auto;min-height:0;display:block}
+@media (prefers-reduced-motion: reduce){.dz-el,.dz-in{animation:none!important}}
+`;
+
+/* ---- Mẫu khởi đầu để không phải làm từ trang trắng ---- */
+let dzSeq=0;const dzId=()=>'e'+Date.now().toString(36)+(dzSeq++).toString(36);
+function dzStarter(kind){const A=(o,a={})=>({id:dzId(),rot:0,op:1,anim:{in:'fade',d:0,du:1,loop:'none',ld:3},...o,anim:{in:'fade',d:0,du:1,loop:'none',ld:3,...a}});
+  if(kind==='grad')return{id:'d'+Date.now().toString(36),name:'Mẫu tốt nghiệp của tôi',kind:'grad',bg:{mode:'grad',c1:'#ffd6e7',c2:'#b9c8ff',ang:160},els:[
+    A({t:'text',txt:'CLASS OF',x:30,y:34,w:300,h:30,font:'Be Vietnam Pro',size:13,color:'#2a2350',wt:700,ls:.4},{in:'down',d:.1}),
+    A({t:'text',txt:'{year}',x:0,y:60,w:360,h:170,font:'SVN Abril',size:150,color:'#ffffff',lh:1,shadow:true},{in:'zoom',d:.2,du:1.2}),
+    A({t:'photo',which:'cut',x:50,y:170,w:260,h:360,fit:'contain',pos:'50% 100%'},{in:'up',d:.5,du:1.2}),
+    A({t:'sticker',kind:'cap',x:262,y:150,w:80,h:60,rot:16},{in:'drop',d:1,loop:'sway',ld:3}),
+    A({t:'sticker',kind:'star4',c1:'#ffffff',x:24,y:250,w:34,h:34},{in:'pop',d:1.2,loop:'pulse',ld:2}),
+    A({t:'shape',kind:'round',fill:'#ffffff',rad:20,x:24,y:500,w:312,h:118,op:.9},{in:'up',d:.8}),
+    A({t:'text',txt:'{nick}',x:34,y:510,w:292,h:52,font:'SVN Flamingo',size:40,color:'#2a2350'},{in:'wipe',d:1.1,du:1.2}),
+    A({t:'text',txt:'{degree} · {major}\n{dateLong} · {time}',x:34,y:562,w:292,h:46,font:'Be Vietnam Pro',size:12,color:'#4a4370',lh:1.5},{in:'fade',d:1.4})]};
+  return{id:'d'+Date.now().toString(36),name:'Mẫu thiệp cưới của tôi',kind:'wedding',bg:{mode:'grad',c1:'#fff6f0',c2:'#f3dccf',ang:180},els:[
+    A({t:'sticker',kind:'corner-rose',c1:'#c97a8a',c2:'#f2c4cf',x:-10,y:-10,w:160,h:160},{in:'fade',loop:'sway',ld:6}),
+    A({t:'sticker',kind:'corner-rose',c1:'#c97a8a',c2:'#f2c4cf',x:210,y:-10,w:160,h:160,rot:90},{in:'fade',loop:'sway',ld:7}),
+    A({t:'text',txt:'Chúng mình cưới',x:40,y:92,w:280,h:30,font:'Be Vietnam Pro',size:13,color:'#a2565f',wt:600,ls:.3,up:true},{in:'down',d:.2}),
+    A({t:'shape',kind:'arch',fill:'#ffffff',x:60,y:140,w:240,h:300,sw:0},{in:'zoom',d:.3}),
+    A({t:'photo',which:'cover',mask:'arch',x:70,y:150,w:220,h:280,bw:0},{in:'blur',d:.5,du:1.3}),
+    A({t:'text',txt:'{couple}',x:14,y:448,w:332,h:78,font:'SVN Flamingo',size:34,lh:1.15,color:'#5a2f36'},{in:'wipe',d:1,du:1.4}),
+    A({t:'shape',kind:'line',fill:'#c97a8a',sw:2,x:130,y:528,w:100,h:8},{in:'zoom',d:1.4}),
+    A({t:'text',txt:'{dateLong}\nÂm lịch {lunar}',x:30,y:540,w:300,h:52,font:'Cormorant Garamond',size:17,color:'#5a2f36',lh:1.4},{in:'up',d:1.5}),
+    A({t:'sticker',kind:'heart',c1:'#e05a7a',x:166,y:600,w:28,h:26},{in:'pop',d:1.9,loop:'heartbeat',ld:1.6})]}}
+
+/* ---- Thư viện mẫu tự thiết kế ---- */
+function dzLib(){return S.designs||(S.designs=[])}
+function dzSaveLib(d){const L=dzLib(),i=L.findIndex(x=>x.id===d.id);const c=structuredClone(d);if(i>=0)L[i]=c;else L.unshift(c);
+  if(S.heroDesign&&S.heroDesign.id===d.id)S.heroDesign=structuredClone(d);if(S.grad&&S.grad.heroDesign&&S.grad.heroDesign.id===d.id)S.grad.heroDesign=structuredClone(d);save()}
+function dzUse(d){const m=S.mode==='grad';if(m)S.grad.heroDesign=d?structuredClone(d):null;else S.heroDesign=d?structuredClone(d):null;skipIntro=false;dzRenderLib();update(true)}
+function dzRenderLib(){dzCss();const m=S.mode==='grad',cur=m?(S.grad&&S.grad.heroDesign):S.heroDesign,box=document.querySelectorAll('[data-dzlib]');
+  const html=`<div class="dzlib">${dzLib().map(d=>`<div class="dzcard${cur&&cur.id===d.id?' on':''}"><div class="dzthumb">${renderDesign(d,dzCtx(m?'grad':'wedding',m?S.grad:S,true),{edit:true})}</div><b>${esc(d.name||'Mẫu')}</b><span><button class="btn small" data-dzuse="${d.id}">${cur&&cur.id===d.id?'Đang dùng':'Dùng'}</button><button class="btn small ghost" data-dzedit="${d.id}">Sửa</button><button class="btn small ghost" data-dzdel="${d.id}" aria-label="Xoá mẫu">×</button></span></div>`).join('')||'<p class="hint">Chưa có mẫu nào. Bấm “Tạo mẫu mới” để mở xưởng thiết kế.</p>'}</div>
+    ${cur?`<p class="hint">Bìa thiệp đang dùng mẫu tự thiết kế “${esc(cur.name)}”. <button class="btn small" data-dzoff>Bỏ dùng, quay về mẫu có sẵn</button></p>`:''}`;
+  box.forEach(b=>b.innerHTML=html)}
+
+/* ---- Xưởng thiết kế (giao diện) ---- */
+let DZ=null,dzSel=null,dzHist=[],dzFuture=[];
+function dzCss(){if(document.getElementById('dzcss'))return;const css=document.createElement('style');css.id='dzcss';css.textContent=STUDIO_CSS+DESIGN_CSS;document.head.appendChild(css)}
+const STUDIO_CSS=`
+#studio{position:fixed;inset:0;z-index:80;background:#1b1a1f;color:#eee;display:grid;grid-template-columns:270px 1fr 300px;grid-template-rows:auto 1fr;font:13px var(--body)}
+#studio[hidden]{display:none}
+.st-top{grid-column:1/4;display:flex;gap:6px;align-items:center;padding:8px 10px;background:#141317;border-bottom:1px solid #2c2a31;flex-wrap:wrap}
+.st-top input,.st-top select{background:#25232a;border:1px solid #3a3740;color:#eee;border-radius:8px;padding:6px 8px;font-size:13px}
+.st-top .sp{flex:1}.st-top select,.st-top input{width:auto!important;max-width:220px;margin:0}
+.st-btn{border:1px solid #3a3740;background:#25232a;color:#eee;border-radius:8px;padding:6px 10px;cursor:pointer;font-weight:500;font-size:12.5px}.st-btn:hover{border-color:#6b6575}.st-btn.pri{background:#c2453f;border-color:#c2453f;color:#fff}
+.st-side{overflow:auto;padding:10px;background:#1f1e23;border-right:1px solid #2c2a31}.st-right{border-right:0;border-left:1px solid #2c2a31}
+.st-tabs{display:flex;gap:4px;margin-bottom:8px}.st-tabs button{flex:1;background:none;border:0;border-bottom:2px solid transparent;color:#aaa;padding:6px;cursor:pointer;font-weight:600}.st-tabs button[aria-selected=true]{color:#fff;border-color:#c2453f}
+.st-h{font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#9d97a8;margin:12px 0 6px}
+.st-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.st-grid button{aspect-ratio:1;background:#2a2830;border:1px solid #36333c;border-radius:8px;cursor:pointer;padding:6px;color:#ddd;font-size:10px;display:grid;place-items:center}.st-grid button:hover{border-color:#c2453f}.st-grid svg{width:100%;height:100%}
+.st-list{display:grid;gap:4px}.st-list button{text-align:left;background:#2a2830;border:1px solid #36333c;border-radius:8px;color:#ddd;padding:7px 9px;cursor:pointer}.st-list button:hover{border-color:#c2453f}
+.st-stage{position:relative;overflow:auto;display:grid;place-items:center;padding:20px;background:radial-gradient(circle at 50% 40%,#2c2a33,#151418)}
+.st-board{position:relative;width:min(360px,calc((100vh - 120px) * 360 / 640));box-shadow:0 20px 50px rgba(0,0,0,.5);border-radius:6px;overflow:visible;touch-action:none}
+.st-board .dz{border-radius:6px}
+.st-board .dz-el{cursor:move}
+.st-sel{position:absolute;border:1.5px solid #4da3ff;pointer-events:none;z-index:999}
+.st-sel i{position:absolute;width:14px;height:14px;border-radius:50%;background:#fff;border:2px solid #4da3ff;pointer-events:auto}
+.st-sel .h-br{right:-8px;bottom:-8px;cursor:nwse-resize}.st-sel .h-r{right:-8px;top:calc(50% - 7px);cursor:ew-resize}.st-sel .h-b{bottom:-8px;left:calc(50% - 7px);cursor:ns-resize}
+.st-sel .h-rot{left:calc(50% - 7px);top:-34px;cursor:grab;background:#4da3ff}.st-sel .h-rot::after{content:"";position:absolute;left:5px;top:12px;width:1.5px;height:20px;background:#4da3ff}
+.st-f{display:grid;gap:3px;margin-bottom:8px;color:#bbb;font-size:12px}.st-f input,.st-f select,.st-f textarea{background:#25232a;border:1px solid #3a3740;color:#eee;border-radius:7px;padding:6px 8px;font:13px var(--body);width:100%}
+.st-f input[type=color]{padding:2px;height:32px}.st-f input[type=range]{padding:0;accent-color:#c2453f}
+.st-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.st-row3{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.st-chk{display:flex;gap:6px;align-items:center;color:#ccc;margin-bottom:6px}
+.st-layers{display:grid;gap:4px;grid-template-columns:minmax(0,1fr)}.st-layers div{display:flex;gap:6px;align-items:center;background:#2a2830;border:1px solid #36333c;border-radius:7px;padding:5px 7px;cursor:pointer}.st-layers div.on{border-color:#4da3ff}.st-layers .st-btn{flex:0 0 auto;width:28px;padding:3px 0}.st-layers span{flex:1;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.st-empty{color:#8f8a99;line-height:1.6}
+@media (max-width:860px){#studio{grid-template-columns:1fr;grid-template-rows:auto 56vh auto auto;overflow:auto}.st-top{grid-column:1}.st-stage{grid-row:2;padding:10px}.st-board{width:min(300px,calc((56vh - 30px) * 360 / 640))}.st-side{border:0;border-top:1px solid #2c2a31;overflow:visible}}
+.dzlib{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.dzcard{border:1.5px solid var(--line);border-radius:10px;padding:6px;display:grid;gap:4px;background:var(--panel)}.dzcard.on{border-color:var(--son);box-shadow:0 0 0 2px var(--son-soft)}
+.dzthumb{border-radius:6px;overflow:hidden;pointer-events:none}.dzcard b{font-size:12.5px}.dzcard span{display:flex;gap:4px}.dzcard span{flex-wrap:wrap}.dzcard span .btn{padding:4px 8px;font-size:12px;flex:1;min-width:0;margin:0;white-space:nowrap}.dzcard span [data-dzuse]{flex-basis:100%}.dzcard span [data-dzdel]{flex:0 0 auto}
+`;
+function dzSnap(){dzHist.push(JSON.stringify(DZ));if(dzHist.length>60)dzHist.shift();dzFuture=[]}
+function dzMode(){return DZ&&DZ.kind==='grad'?'grad':'wedding'}
+function dzCtxNow(){const m=dzMode();return dzCtx(m,m==='grad'?S.grad:S,true)}
+function dzEl(id){return DZ.els.find(e=>e.id===id)}
+function openStudio(d){DZ=structuredClone(d);dzSel=null;dzHist=[];dzFuture=[];
+  let st=$('#studio');if(!st){dzCss();st=document.createElement('div');st.id='studio';document.body.appendChild(st);dzBind(st)}
+  st.innerHTML=`<div class="st-top"><input id="stName" aria-label="Tên mẫu" value="${esc(DZ.name||'')}" style="width:190px"><select id="stKind" aria-label="Loại thiệp"><option value="wedding">Thiệp cưới</option><option value="grad">Thiệp tốt nghiệp</option></select>
+    <button class="st-btn" data-sa="undo" title="Hoàn tác">↶</button><button class="st-btn" data-sa="redo" title="Làm lại">↷</button><button class="st-btn" data-sa="play">▶ Xem hiệu ứng</button><span class="sp"></span>
+    <button class="st-btn" data-sa="export">Tải mẫu (.json)</button><button class="st-btn" data-sa="save">Lưu mẫu</button><button class="st-btn pri" data-sa="use">Lưu & dùng cho thiệp</button><button class="st-btn" data-sa="close">Đóng</button></div>
+  <aside class="st-side" id="stLeft"></aside><main class="st-stage" id="stStage"><div class="st-board" id="stBoard"></div></main><aside class="st-side st-right" id="stRight"></aside>`;
+  $('#stKind').value=DZ.kind==='grad'?'grad':'wedding';st.hidden=false;document.body.style.overflow='hidden';dzLeft('add');dzDraw();dzProps()}
+function closeStudio(){const st=$('#studio');if(st)st.hidden=true;document.body.style.overflow='';DZ=null}
+function dzLeft(tab){const L=$('#stLeft');const m=dzMode();
+  const tabs=`<div class="st-tabs" role="tablist"><button data-sttab="add" aria-selected="${tab==='add'}">Thêm</button><button data-sttab="bg" aria-selected="${tab==='bg'}">Nền</button><button data-sttab="layers" aria-selected="${tab==='layers'}">Lớp</button></div>`;
+  if(tab==='add')L.innerHTML=tabs+`<p class="st-h">Chữ</p><div class="st-list"><button data-add="text:title">Tiêu đề lớn</button><button data-add="text:body">Đoạn chữ</button><button data-add="text:script">Chữ viết tay</button></div>
+    <p class="st-h">Ô thông tin tự điền</p><div class="st-list">${DZ_FIELDS[m].map(([k,n])=>`<button data-add="field:${k}">${n}</button>`).join('')}</div>
+    <p class="st-h">Ảnh của bạn</p><div class="st-list"><button data-add="photo:cover">Ảnh chính</button>${m==='grad'?'<button data-add="photo:cut">Ảnh đã tách nền</button>':''}<button data-add="photo:album1">Ảnh album 1</button><button data-add="photo:album2">Ảnh album 2</button><label class="st-btn" style="text-align:center">Tải ảnh / sticker riêng (PNG)<input type="file" id="stUpload" accept="image/*" hidden></label></div>
+    <p class="st-h">Sticker và hoạ tiết</p><div class="st-grid">${Object.entries(DZ_STK).map(([k,v])=>`<button data-add="sticker:${k}" title="${esc(v[0])}">${v[1](v[2]||'#c97a8a',v[3]||'#f2c4cf')}</button>`).join('')}</div>
+    <p class="st-h">Hình khối</p><div class="st-grid">${Object.entries(DZ_SHAPES).map(([k,v])=>`<button data-add="shape:${k}" title="${v}">${v}</button>`).join('')}</div>`;
+  if(tab==='bg'){const b=DZ.bg||(DZ.bg={mode:'color',c1:'#fff8f2'});L.innerHTML=tabs+`<label class="st-f">Kiểu nền<select data-bg="mode"><option value="color">Một màu</option><option value="grad">Chuyển màu</option><option value="photo">Ảnh của bạn (mờ)</option></select></label>
+    ${b.mode==='photo'?`<label class="st-f">Ảnh<select data-bg="which"><option value="cover">Ảnh chính</option><option value="album1">Ảnh album 1</option><option value="album2">Ảnh album 2</option></select></label><label class="st-f">Độ mờ<input type="range" min="0" max="20" data-bg="blur" value="${b.blur||0}"></label><label class="st-f">Độ sáng<input type="range" min=".3" max="1.1" step=".05" data-bg="dim" value="${b.dim??.85}"></label>`
+      :`<div class="st-row"><label class="st-f">Màu 1<input type="color" data-bg="c1" value="${b.c1||'#fff8f2'}"></label>${b.mode==='grad'?`<label class="st-f">Màu 2<input type="color" data-bg="c2" value="${b.c2||'#f3dccf'}"></label>`:''}</div>${b.mode==='grad'?`<label class="st-f">Góc chuyển màu<input type="range" min="0" max="360" data-bg="ang" value="${b.ang||160}"></label><label class="st-chk"><input type="checkbox" data-bg="radial" ${b.radial?'checked':''}> Toả tròn từ giữa</label>`:''}`}`;
+    const sel=L.querySelector('[data-bg=mode]');sel.value=b.mode||'color';if(L.querySelector('[data-bg=which]'))L.querySelector('[data-bg=which]').value=b.which||'cover'}
+  if(tab==='layers')L.innerHTML=tabs+`<p class="st-h">Lớp trên cùng ở đầu danh sách</p><div class="st-layers">${[...DZ.els].reverse().map(e=>`<div class="${dzSel===e.id?'on':''}" data-layer="${e.id}"><span>${esc(dzLabel(e))}</span><button class="st-btn" data-lz="${e.id}:1" title="Lên">↑</button><button class="st-btn" data-lz="${e.id}:-1" title="Xuống">↓</button></div>`).join('')||'<p class="st-empty">Chưa có lớp nào.</p>'}</div>`;
+  L.dataset.tab=tab}
+function dzLabel(e){return e.t==='text'?(e.txt||'Chữ').replace(/\n/g,' ').slice(0,28):e.t==='sticker'?'Sticker · '+((DZ_STK[e.kind]||[])[0]||e.kind):e.t==='shape'?'Hình · '+(DZ_SHAPES[e.kind]||e.kind):e.t==='photo'?'Ảnh của bạn':'Ảnh tải lên'}
+function dzDraw(){const B=$('#stBoard');if(!B||!DZ)return;B.innerHTML=renderDesign(DZ,dzCtxNow(),{edit:true})+`<div class="st-sel" id="stSel" hidden><i class="h-rot" data-h="rot"></i><i class="h-r" data-h="r"></i><i class="h-b" data-h="b"></i><i class="h-br" data-h="br"></i></div>`;dzSelBox()}
+function dzSelBox(){const s=$('#stSel');if(!s)return;const e=dzSel&&dzEl(dzSel);if(!e){s.hidden=true;return}s.hidden=false;
+  Object.assign(s.style,{left:(e.x/DZ_W*100)+'%',top:(e.y/DZ_H*100)+'%',width:(e.w/DZ_W*100)+'%',height:(e.h/DZ_H*100)+'%',rotate:(e.rot||0)+'deg'})}
+function dzProps(){const R=$('#stRight');if(!R)return;const e=dzSel&&dzEl(dzSel);
+  if(!e){R.innerHTML=`<p class="st-h">Thuộc tính</p><p class="st-empty">Chạm vào một phần tử trên bìa để chỉnh. Kéo để di chuyển, kéo chấm trắng để đổi cỡ, chấm xanh phía trên để xoay.<br><br>Bên trái: thêm chữ, ô thông tin tự điền (tên, ngày, tên khách…), ảnh, sticker và hình khối. Tab Nền để đổi màu nền, tab Lớp để sắp xếp.<br><br>Mỗi phần tử có hiệu ứng xuất hiện và chuyển động lặp riêng. Bấm “Xem hiệu ứng” để xem thử.</p>`;return}
+  const a=e.anim||(e.anim={in:'none',d:0,du:1,loop:'none',ld:3}),f=(k,n,inp)=>`<label class="st-f">${n}${inp}</label>`,num=(k,mn,mx,st,v)=>`<input type="number" data-p="${k}" min="${mn}" max="${mx}" step="${st}" value="${v}">`;
+  let h=`<p class="st-h">${esc(dzLabel(e))}</p><div class="st-row3">${f('x','X',num('x',-400,800,1,Math.round(e.x)))}${f('y','Y',num('y',-400,1200,1,Math.round(e.y)))}${f('rot','Xoay°',num('rot',-360,360,1,Math.round(e.rot||0)))}</div><div class="st-row3">${f('w','Rộng',num('w',4,1200,1,Math.round(e.w)))}${f('h','Cao',num('h',2,1600,1,Math.round(e.h)))}${f('op','Độ rõ',`<input type="number" data-p="op" min="0" max="1" step=".05" value="${e.op??1}">`)}</div>`;
+  if(e.t==='text')h+=`${f('txt','Nội dung (chèn {tên_ô} để tự điền)',`<textarea data-p="txt" rows="3">${esc(e.txt||'')}</textarea>`)}
+    ${f('font','Phông chữ',`<select data-p="font">${DZ_FONTS.map(x=>`<option ${x===(e.font||'Be Vietnam Pro')?'selected':''} style="font-family:'${x}'">${x}</option>`).join('')}</select>`)}
+    <div class="st-row">${f('size','Cỡ chữ',num('size',6,300,1,e.size||24))}${f('color','Màu chữ',`<input type="color" data-p="color" value="${e.color||'#222222'}">`)}</div>
+    <div class="st-row3">${f('wt','Độ đậm',`<select data-p="wt">${[300,400,500,600,700,800].map(v=>`<option ${+(e.wt||400)===v?'selected':''}>${v}</option>`).join('')}</select>`)}${f('al','Căn lề',`<select data-p="al">${[['left','Trái'],['center','Giữa'],['right','Phải']].map(([v,n])=>`<option value="${v}" ${(e.al||'center')===v?'selected':''}>${n}</option>`).join('')}</select>`)}${f('ls','Giãn chữ',num('ls',-.1,1,.01,e.ls||0))}</div>
+    <div class="st-row">${f('lh','Giãn dòng',num('lh',.6,3,.05,e.lh||1.2))}${f('grad','Màu chuyển (để trống: tắt)',`<input type="color" data-p="grad" value="${e.grad||'#ffffff'}">`)}</div>
+    <label class="st-chk"><input type="checkbox" data-p="useGrad" ${e.grad?'checked':''}> Chữ chuyển màu</label><label class="st-chk"><input type="checkbox" data-p="up" ${e.up?'checked':''}> VIẾT HOA</label><label class="st-chk"><input type="checkbox" data-p="italic" ${e.italic?'checked':''}> In nghiêng</label><label class="st-chk"><input type="checkbox" data-p="shadow" ${e.shadow?'checked':''}> Đổ bóng</label>
+    <div class="st-row">${f('stroke','Viền chữ',`<input type="color" data-p="stroke" value="${e.stroke||'#ffffff'}">`)}<label class="st-chk" style="margin-top:18px"><input type="checkbox" data-p="useStroke" ${e.stroke?'checked':''}> Có viền</label></div>`;
+  if(e.t==='sticker'){const d=DZ_STK[e.kind]||[];h+=`<div class="st-row">${d[2]?f('c1','Màu 1',`<input type="color" data-p="c1" value="${e.c1||d[2]}">`):''}${d[3]?f('c2','Màu 2',`<input type="color" data-p="c2" value="${e.c2||d[3]}">`):''}</div>`}
+  if(e.t==='shape')h+=`<div class="st-row">${f('fill','Màu',`<input type="color" data-p="fill" value="${e.fill||'#e8d9c8'}">`)}${f('fill2','Màu 2',`<input type="color" data-p="fill2" value="${e.fill2||'#ffffff'}">`)}</div><label class="st-chk"><input type="checkbox" data-p="useFill2" ${e.fill2?'checked':''}> Chuyển màu</label>
+    <div class="st-row3">${f('ang','Góc',num('ang',0,360,5,e.ang||135))}${f('rad','Bo góc',num('rad',0,200,1,e.rad??18))}${f('sw','Viền',num('sw',0,40,1,e.sw||0))}</div>${f('stroke','Màu viền',`<input type="color" data-p="stroke" value="${e.stroke||'#b48a5a'}">`)}`;
+  if(e.t==='photo'||e.t==='img')h+=`${e.t==='photo'?f('which','Ảnh',`<select data-p="which"><option value="cover">Ảnh chính</option>${dzMode()==='grad'?'<option value="cut">Ảnh đã tách nền</option>':''}<option value="album1">Ảnh album 1</option><option value="album2">Ảnh album 2</option></select>`):''}
+    <div class="st-row">${f('mask','Khung',`<select data-p="mask">${Object.entries(DZ_MASKS).map(([k,v])=>`<option value="${k}">${v}</option>`).join('')}</select>`)}${f('fit','Cách đặt',`<select data-p="fit"><option value="cover">Lấp đầy khung</option><option value="contain">Vừa khung</option></select>`)}</div>
+    ${f('pos','Vị trí ảnh trong khung',`<select data-p="pos"><option value="50% 40%">Giữa</option><option value="50% 0%">Trên</option><option value="50% 100%">Dưới</option><option value="0% 50%">Trái</option><option value="100% 50%">Phải</option></select>`)}
+    ${f('filter','Tông màu',`<select data-p="filter"><option value="none">Giữ nguyên</option><option value="warm">Ấm</option><option value="soft">Mềm</option><option value="vintage">Cổ điển</option><option value="cool">Lạnh</option><option value="bw">Đen trắng</option></select>`)}
+    <div class="st-row">${f('bw','Viền khung',num('bw',0,30,1,e.bw||0))}${f('bc','Màu viền',`<input type="color" data-p="bc" value="${e.bc||'#ffffff'}">`)}</div><label class="st-chk"><input type="checkbox" data-p="sh" ${e.sh?'checked':''}> Đổ bóng</label><label class="st-chk"><input type="checkbox" data-p="outline" ${e.outline?'checked':''}> Viền trắng kiểu sticker (ảnh tách nền)</label>`;
+  h+=`<p class="st-h">Hiệu ứng</p>${f('in','Xuất hiện',`<select data-a="in">${Object.entries(DZ_IN).map(([k,v])=>`<option value="${k}" ${a.in===k?'selected':''}>${v}</option>`).join('')}</select>`)}
+    <div class="st-row">${f('d','Chờ (giây)',`<input type="number" data-a="d" min="0" max="20" step=".1" value="${a.d||0}">`)}${f('du','Dài (giây)',`<input type="number" data-a="du" min=".2" max="10" step=".1" value="${a.du||1}">`)}</div>
+    ${f('loop','Chuyển động lặp',`<select data-a="loop">${Object.entries(DZ_LOOP).map(([k,v])=>`<option value="${k}" ${a.loop===k?'selected':''}>${v}</option>`).join('')}</select>`)}${f('ld','Tốc độ lặp (giây một vòng)',`<input type="number" data-a="ld" min=".3" max="30" step=".1" value="${a.ld||3}">`)}
+    <p class="st-h">Sắp xếp</p><div class="st-row"><button class="st-btn" data-sa="front">Lên trên cùng</button><button class="st-btn" data-sa="back">Xuống dưới cùng</button><button class="st-btn" data-sa="dup">Nhân bản</button><button class="st-btn" data-sa="del" style="color:#ff8a80">Xoá</button></div>`;
+  R.innerHTML=h;['al','mask','fit','pos','filter','which'].forEach(k=>{const s=R.querySelector(`[data-p=${k}]`);if(s&&e[k]!==undefined)s.value=e[k]})}
+function dzAdd(spec){const[t,k]=spec.split(':'),m=dzMode();dzSnap();let e={id:dzId(),rot:0,op:1,anim:{in:'fade',d:0,du:1,loop:'none',ld:3}};
+  if(t==='text')Object.assign(e,k==='title'?{t:'text',txt:'Tiêu đề',x:30,y:250,w:300,h:70,font:'SVN Abril',size:44,color:'#2b2b2b'}:k==='script'?{t:'text',txt:'Mãi bên nhau',x:40,y:260,w:280,h:60,font:'SVN Flamingo',size:38,color:'#a2565f'}:{t:'text',txt:'Nội dung của bạn',x:40,y:280,w:280,h:50,font:'Be Vietnam Pro',size:15,color:'#333333',lh:1.5});
+  if(t==='field'){const n=(DZ_FIELDS[m].find(x=>x[0]===k)||[])[1]||k;Object.assign(e,{t:'text',txt:'{'+k+'}',x:30,y:290,w:300,h:k==='invite'?110:50,font:['couple','a','b','nick','name','guest'].includes(k)?'SVN Flamingo':'Be Vietnam Pro',size:['couple','nick','name'].includes(k)?36:k==='invite'?14:18,color:'#333333',lh:1.4})}
+  if(t==='photo')Object.assign(e,{t:'photo',which:k,x:60,y:150,w:240,h:k==='cut'?340:300,fit:k==='cut'?'contain':'cover',mask:k==='cut'?'none':'rounded',pos:k==='cut'?'50% 100%':'50% 40%'});
+  if(t==='sticker'){const d=DZ_STK[k];Object.assign(e,{t:'sticker',kind:k,c1:d[2],c2:d[3],x:130,y:260,w:100,h:k.startsWith('corner')?100:80})}
+  if(t==='shape')Object.assign(e,{t:'shape',kind:k,fill:'#e8d9c8',x:80,y:240,w:200,h:k==='line'?8:k==='circle'||k==='heart'||k==='star'?200:140,rad:18,sw:k==='frame'?3:0,stroke:'#b48a5a'});
+  if(!e.t)return;DZ.els.push(e);dzSel=e.id;dzDraw();dzProps();if($('#stLeft').dataset.tab==='layers')dzLeft('layers')}
+function dzBind(st){
+  st.addEventListener('click',async ev=>{const b=ev.target.closest('button,[data-layer]');if(!b)return;const d=b.dataset;
+    if(d.sttab){dzLeft(d.sttab);return}
+    if(d.add){dzAdd(d.add);return}
+    if(d.lz){const[id,dir]=d.lz.split(':');const i=DZ.els.findIndex(x=>x.id===id),j=i+ +dir;if(j<0||j>=DZ.els.length)return;dzSnap();[DZ.els[i],DZ.els[j]]=[DZ.els[j],DZ.els[i]];dzDraw();dzLeft('layers');ev.stopPropagation();return}
+    if(d.layer){dzSel=d.layer;dzSelBox();dzProps();dzLeft('layers');return}
+    const a=d.sa;if(!a)return;const i=dzSel?DZ.els.findIndex(x=>x.id===dzSel):-1;
+    if(a==='undo'&&dzHist.length){dzFuture.push(JSON.stringify(DZ));DZ=JSON.parse(dzHist.pop());dzDraw();dzProps();return}
+    if(a==='redo'&&dzFuture.length){dzHist.push(JSON.stringify(DZ));DZ=JSON.parse(dzFuture.pop());dzDraw();dzProps();return}
+    if(a==='play'){const z=$('#stBoard .dz');dzSel=null;dzSelBox();dzProps();z.classList.remove('dz-play');void z.offsetWidth;z.classList.add('dz-play');const t=Math.max(3,...DZ.els.map(e=>((e.anim&&e.anim.d)||0)+((e.anim&&e.anim.du)||1)))+4;clearTimeout(dzBind.t);dzBind.t=setTimeout(()=>{const z2=$('#stBoard .dz');if(z2)z2.classList.remove('dz-play')},t*1000);return}
+    if(a==='close'){closeStudio();return}
+    if(a==='save'||a==='use'){DZ.name=$('#stName').value||'Mẫu của tôi';dzSaveLib(DZ);if(a==='use')dzUse(DZ);else{dzRenderLib();update(true)}toast(a==='use'?'Đã lưu mẫu và dùng cho bìa thiệp':'Đã lưu mẫu');if(a==='use')closeStudio();return}
+    if(a==='export'){DZ.name=$('#stName').value||DZ.name;saveFile((DZ.name||'mau-thiep').replace(/[^\w\-]+/g,'-')+'.json',JSON.stringify(DZ),'application/json');return}
+    if(i<0)return;dzSnap();
+    if(a==='del'){DZ.els.splice(i,1);dzSel=null}
+    if(a==='dup'){const c=structuredClone(DZ.els[i]);c.id=dzId();c.x+=14;c.y+=14;DZ.els.push(c);dzSel=c.id}
+    if(a==='front'){DZ.els.push(DZ.els.splice(i,1)[0])}
+    if(a==='back'){DZ.els.unshift(DZ.els.splice(i,1)[0])}
+    dzDraw();dzProps();if($('#stLeft').dataset.tab==='layers')dzLeft('layers')});
+  let snapT=0;const soft=()=>{clearTimeout(snapT);if(!soft.on){dzSnap();soft.on=true}snapT=setTimeout(()=>soft.on=false,600)};
+  st.addEventListener('input',ev=>{const t=ev.target,d=t.dataset;if(!DZ)return;
+    if(t.id==='stName'){DZ.name=t.value;return}
+    if(t.id==='stKind'){DZ.kind=t.value;dzLeft($('#stLeft').dataset.tab||'add');dzDraw();dzProps();return}
+    if(d.bg){soft();const b=DZ.bg||(DZ.bg={});b[d.bg]=t.type==='checkbox'?t.checked:(t.type==='range'?+t.value:t.value);dzDraw();if(d.bg==='mode')dzLeft('bg');return}
+    const e=dzSel&&dzEl(dzSel);if(!e)return;soft();
+    if(d.a){e.anim=e.anim||{};e.anim[d.a]=t.tagName==='SELECT'?t.value:+t.value;dzDraw();return}
+    if(d.p){const k=d.p,v=t.type==='checkbox'?t.checked:(t.type==='number'?+t.value:t.value);
+      if(k==='useGrad'){e.grad=v?(e.grad||'#ffffff'):'';dzDraw();dzProps();return}if(k==='useStroke'){e.stroke=v?(e.stroke||'#ffffff'):'';dzDraw();dzProps();return}if(k==='useFill2'){e.fill2=v?(e.fill2||'#ffffff'):'';dzDraw();dzProps();return}
+      if((k==='grad'&&!e.grad)||(k==='stroke'&&e.t==='text'&&!e.stroke)||(k==='fill2'&&!e.fill2)){e[k]=v;}else e[k]=v;
+      if(['x','y','w','h','rot'].includes(k)){dzDraw()}else dzDraw()}});
+  st.addEventListener('change',async ev=>{const t=ev.target;if(t.id==='stUpload'&&t.files[0]){try{const src=await readAlpha(t.files[0],1000);const im=await imgFrom(src);dzSnap();const w=200,h=Math.round(200*im.height/im.width);DZ.els.push({id:dzId(),t:'img',src,x:80,y:200,w,h,fit:'contain',rot:0,op:1,anim:{in:'fade',d:0,du:1,loop:'none',ld:3}});dzSel=DZ.els[DZ.els.length-1].id;dzDraw();dzProps()}catch(e){toast('Không đọc được ảnh này')}t.value=''}});
+  // kéo, đổi cỡ, xoay
+  let drag=null;
+  st.addEventListener('pointerdown',ev=>{const B=$('#stBoard');if(!B||!B.contains(ev.target))return;const h=ev.target.closest('[data-h]'),el=ev.target.closest('.dz-el');const r=B.getBoundingClientRect(),k=DZ_W/r.width;
+    if(h&&dzSel){const e=dzEl(dzSel);dzSnap();drag={mode:h.dataset.h,e,sx:ev.clientX,sy:ev.clientY,o:{...e},k,cx:r.left+(e.x+e.w/2)/k,cy:r.top+(e.y+e.h/2)/k};B.setPointerCapture(ev.pointerId);ev.preventDefault();return}
+    if(el){dzSel=el.dataset.id;const e=dzEl(dzSel);dzSnap();drag={mode:'move',e,sx:ev.clientX,sy:ev.clientY,o:{...e},k};dzSelBox();dzProps();if($('#stLeft').dataset.tab==='layers')dzLeft('layers');B.setPointerCapture(ev.pointerId);ev.preventDefault();return}
+    dzSel=null;dzSelBox();dzProps()});
+  st.addEventListener('pointermove',ev=>{if(!drag)return;const{e,o,k}=drag,dx=(ev.clientX-drag.sx)*k,dy=(ev.clientY-drag.sy)*k;
+    if(drag.mode==='move'){e.x=Math.round(o.x+dx);e.y=Math.round(o.y+dy)}
+    else if(drag.mode==='rot'){const a=Math.atan2(ev.clientY-drag.cy,ev.clientX-drag.cx)*180/Math.PI+90;e.rot=Math.round(ev.shiftKey?a:Math.round(a/5)*5)}
+    else{const rad=(o.rot||0)*Math.PI/180,lx=dx*Math.cos(rad)+dy*Math.sin(rad),ly=-dx*Math.sin(rad)+dy*Math.cos(rad);
+      if(drag.mode==='r'||drag.mode==='br')e.w=Math.max(6,Math.round(o.w+lx));if(drag.mode==='b'||drag.mode==='br')e.h=Math.max(4,Math.round(drag.mode==='br'&&(e.t==='sticker'||e.t==='img'||(e.t==='photo'&&e.fit==='contain'))?o.h*(e.w/o.w):o.h+ly))}
+    const n=$(`#stBoard .dz-el[data-id="${e.id}"]`);if(n)Object.assign(n.style,{left:(e.x/DZ_W*100)+'%',top:(e.y/DZ_H*100)+'%',width:(e.w/DZ_W*100)+'%',height:(e.h/DZ_H*100)+'%',rotate:(e.rot||0)+'deg'});dzSelBox()});
+  st.addEventListener('pointerup',()=>{if(drag){drag=null;dzProps()}});
+  st.addEventListener('keydown',ev=>{if(!DZ||!dzSel||/INPUT|TEXTAREA|SELECT/.test(ev.target.tagName))return;const e=dzEl(dzSel);const s=ev.shiftKey?10:1;
+    if(ev.key==='Delete'||ev.key==='Backspace'){dzSnap();DZ.els=DZ.els.filter(x=>x.id!==dzSel);dzSel=null;dzDraw();dzProps();ev.preventDefault()}
+    const mv={ArrowLeft:[-s,0],ArrowRight:[s,0],ArrowUp:[0,-s],ArrowDown:[0,s]}[ev.key];if(mv){e.x+=mv[0];e.y+=mv[1];dzDraw();dzProps();ev.preventDefault()}});
+}
+document.addEventListener('click',ev=>{const b=ev.target.closest('button');if(!b||!S)return;const d=b.dataset;
+  if(d.dznew!==undefined){openStudio(dzStarter(S.mode==='grad'?'grad':'wedding'));return}
+  if(d.dzblank!==undefined){openStudio({id:'d'+Date.now().toString(36),name:'Mẫu trắng',kind:S.mode==='grad'?'grad':'wedding',bg:{mode:'color',c1:'#fff8f2'},els:[]});return}
+  if(d.dzedit){const x=dzLib().find(z=>z.id===d.dzedit);if(x)openStudio(x);return}
+  if(d.dzuse){const x=dzLib().find(z=>z.id===d.dzuse);if(x)dzUse(x);return}
+  if(d.dzdel){const L=dzLib(),i=L.findIndex(z=>z.id===d.dzdel);if(i>=0&&confirm('Xoá mẫu “'+L[i].name+'”?')){L.splice(i,1);save();dzRenderLib()}return}
+  if(d.dzoff!==undefined){dzUse(null);return}});
+document.addEventListener('change',async ev=>{const t=ev.target;if(t.matches&&t.matches('[data-dzimport]')&&t.files[0]){ev.stopImmediatePropagation();const f=t.files[0];t.value='';try{const d=JSON.parse(await f.text());if(!d||!Array.isArray(d.els))throw 0;d.id='d'+Date.now().toString(36);dzSaveLib(d);dzRenderLib();toast('Đã thêm mẫu “'+(d.name||'')+'”')}catch(e){toast('File mẫu không đúng')}}},true);
+
 const GINTROS={cap:'Mũ tốt nghiệp tung lên',diploma:'Cuộn bằng mở ra',iris:'Vòng tròn lan toả',fade:'Mờ dần',none:'Không có'};
 const GSAL={elder:['Người lớn: ông bà, bác, cô chú, thầy cô…','Cháu trân trọng kính mời {ten} đến dự lễ tốt nghiệp của cháu. Sự có mặt của {xh} là niềm vinh dự và động lực rất lớn với cháu.','Kính gửi'],
   senior:['Anh chị, sếp, đồng nghiệp','Em mời {ten} đến dự lễ tốt nghiệp của em nhé. Có {xh} ở đó, ngày đặc biệt này của em sẽ trọn vẹn hơn nhiều.','Thân gửi'],
   junior:['Em, các em','Mời {ten} đến dự lễ tốt nghiệp của mình nhé! Có {xh} cổ vũ, mình sẽ tự tin hơn nhiều đó.','Thân gửi'],
   friend:['Bạn bè, hội nhóm','Mời {ten} đến dự lễ tốt nghiệp của mình nhé! Thiếu {xh} là thiếu một tấm ảnh kỷ niệm quan trọng đấy.','Thân gửi']};
-const GRAD_SAMPLE={greet:'',autoOpen:0,title:'Lễ tốt nghiệp Đại học',lead:'Trân trọng mời',name:'Nguyễn Minh Anh',nick:'Minh Anh',degree:'Cử nhân',major:'Thiết kế Đồ hoạ',school:'Đại học Kiến trúc TP.HCM',cls:'Khoá 2022 – 2026',year:'2026',
+const GRAD_SAMPLE={story:[{when:'09/2022',title:'Ngày đầu nhập học',text:'Bỡ ngỡ, háo hức và quen những người bạn đầu tiên.'},{when:'2024',title:'Đồ án đầu tay',text:'Những đêm thức trắng cùng nhóm, và lần đầu được thầy khen.'},{when:'06/2026',title:'Bảo vệ tốt nghiệp',text:'Hồi hộp nhất đời sinh viên, và cuối cùng mình đã làm được!'}],video:{url:'',title:''},gift:{bank:'',acc:'',holder:'',note:'Mung tot nghiep',qr:''},over:{},pa:{zoom:1,x:0,y:0,bright:1,style:''},titles:{},scale:1,nameScale:1,density:1,greet:'',autoOpen:0,title:'Lễ tốt nghiệp Đại học',lead:'Trân trọng mời',name:'Nguyễn Minh Anh',nick:'Minh Anh',degree:'Cử nhân',major:'Thiết kế Đồ hoạ',school:'Đại học Kiến trúc TP.HCM',cls:'Khoá 2022 – 2026',year:'2026',
   date:'2026-12-19',time:'08:30',place:'Hội trường A, Đại học Kiến trúc',address:'196 Pasteur, Phường Xuân Hoà, TP.HCM',note:'Lễ trao bằng bắt đầu 8:30. Mình ở sảnh chính để chụp ảnh từ 8:00.',
   invite:'Sau bốn năm miệt mài, mình sắp chính thức tốt nghiệp rồi! Rất mong bạn đến chung vui và chụp cùng mình vài tấm ảnh thật đẹp nhé.',thanks:'Cảm ơn vì đã luôn ở bên và cổ vũ mình.',phone:'',
   theme:'popyear',variant:0,custom:{},intro:'',photo:'',cut:'',useCut:true,photos:[],
@@ -2762,7 +3061,7 @@ const GRAD_SAMPLE={greet:'',autoOpen:0,title:'Lễ tốt nghiệp Đại học',
   musicPreset:'lib:there-is-romance',prefillUrl:'',showMap:true,sec:{info:true,countdown:true,event:true,album:true,rsvp:true,wish:true},sample:true,mono:''};
 
 function geff(g){const t=GTHEMES[g.theme]||GTHEMES.popyear;const v=t.variants[g.variant]||{};const{n,...vv}=v;const pal={...t.pal,...vv};Object.entries(g.custom||{}).forEach(([k,x])=>{if(x)pal[k]=x});
-  return{...t,pal,intro:g.intro||t.intro,F:FONTSETS[t.fonts]||FONTSETS.sunday,dark:lum(pal.paper)<.4}}
+  const ov=g.over||{};return{...t,...Object.fromEntries(['fxA','fxB','burst'].filter(k=>ov[k]).map(k=>[k,ov[k]])),reveal:ov.reveal||t.reveal||'rise',pal,intro:g.intro||t.intro,F:FONTSETS[ov.fonts]||FONTSETS[t.fonts]||FONTSETS.sunday,dark:lum(pal.paper)<.4}}
 function gCut(g,samp){if(g.useCut!==false&&g.cut)return{src:g.cut,cut:true};if(g.photo)return{src:g.photo,cut:false};return samp?{src:gradSample(GTHEMES[g.theme]?GTHEMES[g.theme].s:0),cut:true}:{src:'',cut:false}}
 function gPerson(P,cls=''){if(!P.src)return'';return`<img class="gp ${P.cut?'is-cut':'is-photo'} ${cls}" src="${P.src}" alt="" draggable="false">`}
 
@@ -2810,6 +3109,7 @@ function gIntro(E,g){const p=E.pal,nk=esc(g.nick||g.name||''),dt=esc(fmtDate(g.d
   case'fade':return`<div class="intro intro-fade" id="intro"><div class="center"><div class="lbl">${card}${to}${pinv}</div><button class="btn big" id="open">Mở thiệp</button></div></div>`;
   default:return''}}
 
+function gAutoOn(id){const o=(G().order||[]).find(x=>x.id===id);if(o&&!o.on){o.on=true;if(typeof gRenderOrder==='function')gRenderOrder()}}
 function buildGrad(g,opt={}){
   const E=geff(g),p=E.pal,F=E.F,samp=!!(opt.preview&&opt.sample),host=opt.host||'web',P=gCut(g,samp||(opt.preview&&g.sample));
   const nk=g.nick||g.name||'',title=`Thiệp mời dự lễ tốt nghiệp · ${nk}`,sec=g.sec||{};
@@ -2817,40 +3117,47 @@ function buildGrad(g,opt={}){
   const photos=(g.photos||[]).filter(Boolean);
   const ev={name:'Lễ tốt nghiệp',date:g.date,time:g.time,place:g.place,address:g.address};
   const calHref=g.date?(()=>{const d=g.date.replace(/-/g,''),tm=g.time||'08:00',[h,mi]=tm.split(':').map(Number),t=tm.replace(':','')+'00',end=String((h+3)%24).padStart(2,'0')+String(mi||0).padStart(2,'0')+'00';return'https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent('Lễ tốt nghiệp · '+nk)+'&dates='+d+'T'+t+'/'+d+'T'+end+'&ctz=Asia/Ho_Chi_Minh&location='+encodeURIComponent([g.place,g.address].filter(Boolean).join(', '))})():'';
-  const h2=t=>`<h2>${t}</h2><div class="orn g-orn">${STAR4(p.accent)}</div>`;
-  const parts=[
-    `<section class="block invite reveal"><p class="to-label">Trân trọng kính mời</p><p class="guest" data-guest>bạn</p><div class="orn g-orn">${CAP_SVG(p.accent,p.accent2)}</div><p class="invite-text">${esc(g.invite).replace(/\n/g,'<br>')}</p><p class="g-to">đến dự lễ tốt nghiệp của</p><p class="g-nk">${esc(nk)}</p></section>`,
-    sec.info!==false&&(g.degree||g.major||g.school)?`<section class="block ginfo reveal">${h2('Tấm bằng của mình')}<div class="gi-card"><div class="gi-seal">${CAP_SVG(E.dark?p.paper:'#ffffff',p.accent2)}</div>
+  const T=id=>esc((g.titles||{})[id]||GSEC_TITLES[id]);const h2=t=>`<h2>${t}</h2><div class="orn g-orn">${STAR4(p.accent)}</div>`;
+  const parts={invite:`<section class="block invite reveal"><p class="to-label">${T('invite')}</p><p class="guest" data-guest>bạn</p><div class="orn g-orn">${CAP_SVG(p.accent,p.accent2)}</div><p class="invite-text">${esc(g.invite).replace(/\n/g,'<br>')}</p><p class="g-to">đến dự lễ tốt nghiệp của</p><p class="g-nk">${esc(nk)}</p></section>`,
+    info:(g.degree||g.major||g.school)?`<section class="block ginfo reveal">${h2(T('info'))}<div class="gi-card"><div class="gi-seal">${CAP_SVG(E.dark?p.paper:'#ffffff',p.accent2)}</div>
       <dl>${[['Học vị',g.degree],['Chuyên ngành',g.major],['Trường',g.school],['Khoá',g.cls]].filter(x=>x[1]).map(([k,v])=>`<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl></div></section>`:'',
-    sec.countdown!==false&&g.date?`<section class="block countdown reveal" data-date="${esc(g.date)}T${esc(g.time||'08:00')}:00+07:00">${h2('Còn lại')}<div class="cd"><div><b data-cd="d">–</b><span>ngày</span></div><div><b data-cd="h">–</b><span>giờ</span></div><div><b data-cd="m">–</b><span>phút</span></div><div><b data-cd="s">–</b><span>giây</span></div></div></section>`:'',
-    sec.event!==false&&(g.date||g.place)?`<section class="block events reveal">${h2('Thời gian và địa điểm')}<article class="ev"><div class="ev-time"><b>${esc(g.time||'')}</b><span>${esc(weekday(g.date))}${g.date?', '+esc(fmtDate(g.date)):''}</span></div>
+    countdown:g.date?`<section class="block countdown reveal" data-date="${esc(g.date)}T${esc(g.time||'08:00')}:00+07:00">${h2(T('countdown'))}<div class="cd"><div><b data-cd="d">–</b><span>ngày</span></div><div><b data-cd="h">–</b><span>giờ</span></div><div><b data-cd="m">–</b><span>phút</span></div><div><b data-cd="s">–</b><span>giây</span></div></div></section>`:'',
+    event:(g.date||g.place)?`<section class="block events reveal">${h2(T('event'))}<article class="ev"><div class="ev-time"><b>${esc(g.time||'')}</b><span>${esc(weekday(g.date))}${g.date?', '+esc(fmtDate(g.date)):''}</span></div>
       <div class="ev-body"><h3>Lễ tốt nghiệp</h3>${g.place?`<p class="place">${esc(g.place)}</p>`:''}${g.address?`<p class="addr">${esc(g.address)}</p>`:''}${g.note?`<p class="note">${esc(g.note)}</p>`:''}
       ${g.address&&g.showMap!==false?((host==='web'||opt.embed)?`<div class="mapf"><iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Bản đồ" src="https://www.google.com/maps?q=${encodeURIComponent(g.address)}&z=16&output=embed"></iframe></div>`:`<a class="mapf mapart" href="${mapsLink(g.address)}" target="_blank" rel="noopener">${mapArt({...p,band:p.paper},(g.address.length*7)%97)}<span class="pin"><svg viewBox="0 0 24 32" aria-hidden="true"><path d="M12 31C4 20 1 15 1 11a11 11 0 0 1 22 0c0 4-3 9-11 20z"/><circle cx="12" cy="11" r="4.2" fill="#fff"/></svg></span><span class="mchip">${esc(g.place||g.address)}</span><span class="mopen">Mở Google Maps ↗</span></a>`):''}
       <div class="ev-actions">${g.address?`<a class="btn" href="${dirLink(g.address)}" target="_blank" rel="noopener">Chỉ đường</a>`:''}${calHref?`<a class="btn ghost" href="${calHref}" target="_blank" rel="noopener">Thêm vào lịch</a>`:''}</div></div></article></section>`:'',
-    sec.album!==false&&photos.length?`<section class="block album reveal">${h2('Khoảnh khắc')}${albumHTML(photos.length>=3?'coverflow':'fan',photos,{date:g.date},nk,'')}</section>`:'',
-    sec.rsvp!==false&&(formOk||opt.preview||g.phone)?`<section class="block rsvp reveal" id="rsvp">${h2('Bạn sẽ đến chứ?')}<p class="muted center">Cho mình biết trước để mình ra đón và chuẩn bị hoa, ảnh nhé.</p>
+    album:photos.length?`<section class="block album reveal">${h2(T('album'))}${albumHTML((g.over&&g.over.album)||(photos.length>=3?'coverflow':'fan'),photos,{date:g.date},nk,'')}</section>`:'',
+    rsvp:(formOk||opt.preview||g.phone)?`<section class="block rsvp reveal" id="rsvp">${h2(T('rsvp'))}<p class="muted center">Cho mình biết trước để mình ra đón và chuẩn bị hoa, ảnh nhé.</p>
       ${(formOk||opt.preview)?`<form class="fm" data-kind="rsvp"><label>Họ tên<input name="name" data-guest-input required maxlength="80"></label><fieldset><legend>Bạn sẽ đến chứ?</legend><div class="seg"><label><input type="radio" name="attend" value="Có" checked><span>Chắc chắn đến</span></label><label><input type="radio" name="attend" value="Chưa chắc"><span>Chưa chắc</span></label><label><input type="radio" name="attend" value="Không"><span>Tiếc quá, không đến được</span></label></div></fieldset><div class="two"><label>Số người<select name="count"><option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option></select></label></div><button class="btn big" type="submit">Gửi xác nhận</button><p class="fm-msg" aria-live="polite"></p></form>`:''}
       ${g.phone?`<div class="ev-actions center"><a class="btn" href="sms:${esc(g.phone.replace(/[^\d+]/g,''))}?&body=${encodeURIComponent('Mình sẽ đến dự lễ tốt nghiệp của '+nk+' nhé!')}">Nhắn tin xác nhận</a><a class="btn ghost" href="https://zalo.me/${esc(g.phone.replace(/[^\d]/g,''))}" target="_blank" rel="noopener">Nhắn Zalo</a></div>`:''}</section>`:'',
-    sec.wish!==false&&(formOk||opt.preview)?`<section class="block guestbook reveal" id="guestbook">${h2('Lời chúc mừng')}<div class="wishes" data-wishes><p class="muted center">Hãy là người đầu tiên gửi lời chúc!</p></div><form class="fm" data-kind="wish"><label>Tên của bạn<input name="name" data-guest-input required maxlength="80"></label><label>Lời chúc<textarea name="wish" rows="3" required maxlength="500" placeholder="Chúc mừng tân cử nhân…"></textarea></label><button class="btn big" type="submit">Gửi lời chúc</button><p class="fm-msg" aria-live="polite"></p></form></section>`:''
-  ].filter(Boolean);
-  const body=parts.map((h,i)=>i%2===1?h.replace('class="block ','class="block band '):h).join('');
+    wish:(formOk||opt.preview)?`<section class="block guestbook reveal" id="guestbook">${h2(T('wish'))}<div class="wishes" data-wishes><p class="muted center">Hãy là người đầu tiên gửi lời chúc!</p></div><form class="fm" data-kind="wish"><label>Tên của bạn<input name="name" data-guest-input required maxlength="80"></label><label>Lời chúc<textarea name="wish" rows="3" required maxlength="500" placeholder="Chúc mừng tân cử nhân…"></textarea></label><button class="btn big" type="submit">Gửi lời chúc</button><p class="fm-msg" aria-live="polite"></p></form></section>`:''
+  };
+  const vid=ytId(g.video&&g.video.url),gf=g.gift||{},gImg=(gf.acc||gf.qr)?giftQR(gf):'',gOk=!!(gf.acc||gf.qr);
+  parts.story=(g.story||[]).length?`<section class="block story reveal">${h2(T('story'))}<ol class="tl">${g.story.map(t=>`<li><span class="when">${esc(t.when)}</span><h3>${esc(t.title)}</h3><p>${esc(t.text)}</p></li>`).join('')}</ol></section>`:'';
+  parts.video=vid?`<section class="block video reveal">${h2(T('video'))}<div class="vf vf-${(g.over&&g.over.videoFrame)||'elegant'}" data-cap="${esc(nk)}"><div class="vf-in">${(host==='web'||opt.embed)?`<button class="yt" data-yt="${vid}" aria-label="Phát video"><img src="https://i.ytimg.com/vi/${vid}/hqdefault.jpg" alt="" loading="lazy"><span class="ytplay"></span></button>`:`<a class="yt" href="https://www.youtube.com/watch?v=${vid}" target="_blank" rel="noopener"><span class="yt-ph" style="background-image:url('https://i.ytimg.com/vi/${vid}/hqdefault.jpg')"></span><span class="ytplay"></span><small>Chạm để xem trên YouTube</small></a>`}</div></div>${g.video.title?`<p class="vcap">${esc(g.video.title)}</p>`:''}</section>`:'';
+  const giftInner=gOk?`<div class="gcard">${gImg?`<img class="qr" src="${gImg}" alt="Mã QR mừng tốt nghiệp">`:''}<p class="bank">${esc(gf.bank||'')}</p><p class="acc">${esc(gf.acc||'')}</p><p class="muted">${esc(gf.holder||'')}</p><div class="ev-actions center">${gf.acc?`<button class="btn ghost" data-copy="${esc(gf.acc)}">Sao chép số tài khoản</button>`:''}${gImg?`<a class="btn ghost" href="${gImg}" download="qr-mung-tot-nghiep.png">Lưu mã QR</a>`:''}</div></div>`:'';
+  parts.gift=gOk?`<section class="block gift reveal" id="gift">${h2(T('gift'))}<p class="muted center">Cảm ơn tấm lòng của bạn. Quét mã bằng app ngân hàng bất kỳ.</p>${giftInner}</section>`:'';
+  const order=(g.order&&g.order.length?g.order:GSEC_IDS.map(id=>({id,on:true})));let bi=0;
+  const body=order.filter(x=>x.on&&parts[x.id]).map(x=>{let h=parts[x.id];if(bi++%2===1)h=h.replace('class="block ','class="block band ');return h}).join('');
+  const giftFloat=gOk&&g.giftFloat!==false;
   const LIB=libId(g),libSrc=(LIB&&!g.music)?(opt.musicData||trackURL(LIB)):'',hasMusic=!!(g.music||(g.musicPreset&&g.musicPreset!=='none'));
   const shareOk=!!opt.showShare,salOn=g.salAuto!==false;
   const cfg={greet:g.greet||'',autoOpen:+g.autoOpen||0,kind:'grad',sal:salOn?{tpl:Object.fromEntries(Object.keys(GSAL).map(k=>[k,(g.salTpl&&g.salTpl[k])||GSAL[k][1]])),to:Object.fromEntries(Object.keys(GSAL).map(k=>[k,GSAL[k][2]])),custom:false,def:g.invite||''}:null,
     musicPreset:g.music?'none':(LIB?'canon':(g.musicPreset||'none')),host,shareBase:opt.shareBase||'',couple:nk,prefill:g.prefillUrl||'',preview:!!opt.preview,previewGuest:opt.guest||'',skipIntro:!!opt.skipIntro,intro:E.intro,form:formOk?form:null,csv:g.csvUrl||'',approval:false,
     sample:opt.preview?[['Thu Hà','Chúc mừng tân cử nhân! Tự hào về bạn lắm ♡'],['Anh Tuấn','Chúc em vững bước trên con đường mới!']]:null,
-    fx:{a:E.fxA,b:E.fxB,burst:E.burst,density:1,colors:[p.accent,p.accent2,p.ink],dark:E.dark}};
-  const nameFont=F.names==='d';
-  const vars=`--bg:${p.bg};--paper:${p.paper};--ink:${p.ink};--muted:${p.muted};--accent:${p.accent};--accent2:${p.accent2};--band:${mix(p.paper,p.accent,.06)};--leaf:${p.accent};--dF:${fam(F.d,'d')};--sF:${fam(F.s,'s')};--bF:${fam(F.b,'b')};--nF:${nameFont?fam(F.d,'d'):fam(F.s,'s')};--dW:${F.dw||500};--dT:${F.dt||'none'};--dLS:${F.dls||'0'};--nT:${nameFont?(F.dt||'none'):'none'};--nLS:${nameFont?(F.dls||'0'):'0'};--scale:1;--ns:1;--bgblur:0px;--bgdim:1;--pattern:none;--noise:${NOISE};--tile:none;--glass:none;--on-accent:${lum(p.accent)>.6?'#1d160b':'#fff'};--on-accent2:${lum(p.accent2)>.6?'#1d160b':'#fff'};--gfont:${fam(FONTSETS[GTHEMES[g.theme]?GTHEMES[g.theme].fonts:'sunday'].d,'d')};--onbg:${lum(p.bg)<.55?'#ffffff':p.ink}`;
-  const fams=[F.d,F.s,F.b,'Be Vietnam Pro','SVN Abril','SVN Hollie','SVN Sunday',...(E.hero&&E.hero.startsWith('t-')?['Playfair Display','Fraunces','SVN Paris','SVN Bariol']:[])];
+    fx:{a:E.fxA,b:E.fxB,burst:E.burst,density:+g.density||1,colors:[p.accent,p.accent2,p.ink],dark:E.dark}};
+  const nameFont=F.names==='d';const pa=g.pa||{},paOn=(+pa.zoom||1)!==1||+pa.x||+pa.y,paF=(pa.style&&pa.style!=='')||(+pa.bright||1)!==1,paFx={none:'drop-shadow(0 0 0 transparent)',shadow:'drop-shadow(0 18px 26px rgba(0,0,0,.38))',outline:'drop-shadow(3px 0 0 #fff) drop-shadow(-3px 0 0 #fff) drop-shadow(0 3px 0 #fff) drop-shadow(0 -3px 0 #fff) drop-shadow(0 12px 16px rgba(0,0,0,.3))',glow:'drop-shadow(0 0 3px #fff) drop-shadow(0 0 20px var(--accent))'}[pa.style]||'drop-shadow(0 0 0 transparent)';
+  const vars=`--bg:${p.bg};--paper:${p.paper};--ink:${p.ink};--muted:${p.muted};--accent:${p.accent};--accent2:${p.accent2};--band:${mix(p.paper,p.accent,.06)};--leaf:${p.accent};--dF:${fam(F.d,'d')};--sF:${fam(F.s,'s')};--bF:${fam(F.b,'b')};--nF:${nameFont?fam(F.d,'d'):fam(F.s,'s')};--dW:${F.dw||500};--dT:${F.dt||'none'};--dLS:${F.dls||'0'};--nT:${nameFont?(F.dt||'none'):'none'};--nLS:${nameFont?(F.dls||'0'):'0'};--bgblur:0px;--bgdim:1;--pattern:none;--noise:${NOISE};--tile:none;--glass:none;--on-accent:${lum(p.accent)>.6?'#1d160b':'#fff'};--on-accent2:${lum(p.accent2)>.6?'#1d160b':'#fff'};--gfont:${fam(FONTSETS[GTHEMES[g.theme]?GTHEMES[g.theme].fonts:'sunday'].d,'d')};--onbg:${lum(p.bg)<.55?'#ffffff':p.ink};--scale:${+g.scale||1};--ns:${+g.nameScale||1};--pz:${+pa.zoom||1};--px:${+pa.x||0}px;--py:${+pa.y||0}px;--pbr:${+pa.bright||1};--pfx:${paFx}`;
+  const fams=[F.d,F.s,F.b,'Be Vietnam Pro','SVN Abril','SVN Hollie','SVN Sunday',...(E.hero&&E.hero.startsWith('t-')?['Playfair Display','Fraunces','SVN Paris','SVN Bariol']:[]),...dzFonts(g.heroDesign)];
   return`<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>${esc(title)}</title><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(fmtDate(g.date))} · ${esc(g.school||'')}"><meta name="theme-color" content="${p.bg}">
-${googleLink(fams)}<style>${fontFaces(fams)}:root{${vars}}${INVITE_CSS}${GRAD_CSS}${POSTER_CSS}${TREND_CSS}</style></head>
-<body class="grad gt-${g.theme} host-${host}${E.dark?' dark':''}${lum(p.bg)<.5?' bgdark':''}${P.cut?' has-cut':' no-cut'}${E.intro!=='none'&&!opt.skipIntro?' locked intro-on':''}${E.intro==='iris'&&!opt.skipIntro?' iris':''}">
+${googleLink(fams)}<style>${fontFaces(fams)}:root{${vars}}${INVITE_CSS}${GRAD_CSS}${POSTER_CSS}${TREND_CSS}${DESIGN_CSS}</style></head>
+<body class="grad gt-${g.theme} rv-${E.reveal} host-${host}${paOn?' pa-on':''}${paF?' pa-f':''}${E.dark?' dark':''}${lum(p.bg)<.5?' bgdark':''}${P.cut?' has-cut':' no-cut'}${E.intro!=='none'&&!opt.skipIntro?' locked intro-on':''}${E.intro==='iris'&&!opt.skipIntro?' iris':''}">
 ${opt.skipIntro?'':gIntro(E,g)}<canvas class="fxc" id="fxc" aria-hidden="true"></canvas>
-<main class="wrap">${gHero(E,g,P,{...opt,samp:samp||!!(opt.preview&&g.sample)})}${body}<footer class="end"><div class="orn g-orn">${CAP_SVG(p.accent,p.accent2)}</div><p class="thanks">${esc(g.thanks||'Cảm ơn bạn')}</p><p>${esc(nk)}</p>${shareOk?`<button class="btn ghost share-open" data-share>Gửi thiệp cho người khác</button>`:''}${LIB&&!g.music?`<p class="credit">Nhạc nền: ${esc(TRACKS[LIB][0].split(' · ')[0])} · ${esc(TRACKS[LIB][1])} · ${TRACKS[LIB][2]}</p>`:''}</footer></main>
+<main class="wrap">${g.heroDesign?`<header class="gh gh-design">${renderDesign(g.heroDesign,dzCtx('grad',g,samp||!!(opt.preview&&g.sample)))}</header>`:gHero(E,g,P,{...opt,samp:samp||!!(opt.preview&&g.sample)})}${body}<footer class="end"><div class="orn g-orn">${CAP_SVG(p.accent,p.accent2)}</div><p class="thanks">${esc(g.thanks||'Cảm ơn bạn')}</p><p>${esc(nk)}</p>${shareOk?`<button class="btn ghost share-open" data-share>Gửi thiệp cho người khác</button>`:''}${LIB&&!g.music?`<p class="credit">Nhạc nền: ${esc(TRACKS[LIB][0].split(' · ')[0])} · ${esc(TRACKS[LIB][1])} · ${TRACKS[LIB][2]}</p>`:''}</footer></main>
 ${shareOk?`<div class="sheet" id="shm" hidden role="dialog" aria-modal="true" aria-labelledby="shT"><div class="sheet-bg" data-close></div><div class="sheet-card"><button class="sheet-x" data-close aria-label="Đóng">×</button><h2 id="shT">Gửi thiệp cho người khác</h2><p class="muted center">Nhập tên người nhận để tạo link mời riêng, rồi gửi qua Zalo, Messenger…</p><form class="fm" id="shf"><label>Tên người nhận<input id="shn" maxlength="60" placeholder="ví dụ: cô chú Lan Hùng"></label><label>Link mời<textarea id="shl" rows="2" readonly></textarea></label><div class="ev-actions center"><button class="btn" type="submit">Sao chép lời mời</button><button class="btn ghost" type="button" data-copylink>Chỉ sao chép link</button></div><p class="fm-msg" aria-live="polite"></p></form></div></div>`:''}
-<div class="dock">${!shareOk&&opt.guestShare?GSHARE_BTN:''}${shareOk?`<button class="dk share-dk" data-share aria-label="Gửi thiệp"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="18" cy="5" r="2.6"/><circle cx="6" cy="12" r="2.6"/><circle cx="18" cy="19" r="2.6"/><path d="M8.3 10.8l7.4-4.3M8.3 13.2l7.4 4.3"/></svg></button>`:''}${hasMusic?`<span class="mwrap"><span class="mhint">Chạm để bật nhạc</span><button class="dk music" id="mbtn" aria-label="Bật nhạc" aria-pressed="false"><span></span><span></span><span></span></button></span>`:''}</div>
+<div class="dock">${!shareOk&&opt.guestShare?GSHARE_BTN:''}${shareOk?`<button class="dk share-dk" data-share aria-label="Gửi thiệp"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="18" cy="5" r="2.6"/><circle cx="6" cy="12" r="2.6"/><circle cx="18" cy="19" r="2.6"/><path d="M8.3 10.8l7.4-4.3M8.3 13.2l7.4 4.3"/></svg></button>`:''}${hasMusic?`<span class="mwrap"><span class="mhint">Chạm để bật nhạc</span><button class="dk music" id="mbtn" aria-label="Bật nhạc" aria-pressed="false"><span></span><span></span><span></span></button></span>`:''}${giftFloat?`<button class="dk gift-btn" id="gbtn" aria-haspopup="dialog">${GIFT_ICON}<b>Mừng tốt nghiệp</b></button>`:''}</div>
+${giftFloat?`<div class="sheet" id="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="sheetT"><div class="sheet-bg" data-close></div><div class="sheet-card"><button class="sheet-x" data-close aria-label="Đóng">×</button><h2 id="sheetT">${T('gift')}</h2><p class="muted center">Cảm ơn tấm lòng của bạn. Quét mã bằng app ngân hàng bất kỳ.</p>${giftInner}</div></div>`:''}
 ${(g.music||libSrc)?`<audio id="bgm" loop preload="auto" src="${g.music||libSrc}"></audio>`:''}
 <div class="lb" id="lb" hidden><button class="lb-x" aria-label="Đóng">×</button><img alt=""></div>
 <script>var salDetect=${salDetect.toString()};(${inviteRuntime.toString()})(${JSON.stringify(cfg).replace(/</g,'\\u003c')});<\/script></body></html>`}
@@ -2907,8 +3214,18 @@ function gRenderGuests(){const list=(G().guests||'').split('\n').map(x=>x.trim()
   $('#gGuestLinks').innerHTML=list.map((n,i)=>{const sd=G().salAuto!==false?salDetect(n):null;return`<div class="link-row"><div class="top"><b>${esc(n)}${sd?` <span class="sal-tag">${GN[sd.grp]}</span>`:''}</b><span><button class="btn small" data-ggcopy="${i}">Sao chép tin nhắn</button> <button class="btn small ghost" data-ggview="${i}">Xem thử</button></span></div><code>${esc(gGuestLink(n))}</code></div>`}).join('')||'<p class="hint">Chưa có khách nào.</p>';
   $('#gShareBase').value=S.shareBase||'';if(ONLINE&&!S.shareBase)$('#gGuestLinks').innerHTML=NEEDSAVE;return list}
 function gMsg(n){return(G().msgTpl||'{link}').split('{khach}').join(n).split('{link}').join(gGuestLink(n))}
-function gRenderAll(){gRenderBasics();gRenderPhoto();gRenderThemes();gRenderSal();gRenderGuests()}
-function setMode(m){S.mode=m;document.body.classList.toggle('mode-grad',m==='grad');document.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.mode===m));showPane(curTab);skipIntro=false;if(m==='grad')gRenderAll();update(true)}
+function gRenderExtra(){const g=G();const opt=(o,cur)=>'<option value="">Theo mẫu</option>'+Object.entries(o).map(([k,v])=>`<option value="${k}" ${cur===k?'selected':''}>${esc(typeof v==='string'?v:v.name)}</option>`).join('');
+  const M={fonts:FONTSETS,fxA:FXA,fxB:FXB,burst:BURSTS,reveal:REVEALS,album:ALBUMS,videoFrame:VFRAMES};document.querySelectorAll('[data-go]').forEach(el=>{el.innerHTML=opt(M[el.dataset.go],(g.over||{})[el.dataset.go])});
+  const st=document.querySelector('[data-gpa=style]');if(st&&!st.options.length)st.innerHTML=Object.entries(GPA_STYLES).map(([k,v])=>`<option value="${k}">${v}</option>`).join('');
+  document.querySelectorAll('[data-gpa]').forEach(el=>{el.value=(g.pa||{})[el.dataset.gpa]??''});
+  document.querySelectorAll('[data-gv]').forEach(el=>el.value=(g.video||{})[el.dataset.gv]||'');
+  $('#gBank').innerHTML=bankOpts((g.gift||{}).bank);document.querySelectorAll('[data-gg]').forEach(el=>{if(el.tagName!=='SELECT')el.value=(g.gift||{})[el.dataset.gg]||''});
+  const fl=document.querySelector('[data-gk=giftFloat]');if(fl)fl.checked=g.giftFloat!==false;gRenderQr();gRenderStory();gRenderOrder()}
+function gRenderQr(){const gf=G().gift||{},img=(gf.acc||gf.qr)?giftQR(gf):'';$('#gQrBox').innerHTML=img?`<img src="${img}" alt="Mã QR"><div class="hint">${gf.qr?'Đang dùng ảnh QR bạn tải lên. <button class="btn small" id="gQrDel">Dùng QR tự tạo</button>':'Mã VietQR tự tạo, hãy thử quét bằng app ngân hàng để kiểm tra.'}</div>`:'<div class="hint">Chọn ngân hàng và nhập số tài khoản để tạo mã.</div>'}
+function gRenderStory(){$('#gStory').innerHTML=(G().story||[]).map((t,i)=>`<div class="card" data-gi="${i}"><div class="card-head">Cột mốc ${i+1}<button class="btn ghost small" data-gsdel="${i}">Xoá</button></div><div class="row2"><label class="f">Thời gian<input type="text" data-gst="when" value="${esc(t.when)}"></label><label class="f">Tiêu đề<input type="text" data-gst="title" value="${esc(t.title)}"></label></div><label class="f">Lời kể<textarea data-gst="text" rows="2">${esc(t.text)}</textarea></label></div>`).join('')}
+function gRenderOrder(){const o=G().order||[];$('#gorder').innerHTML=o.map((x,i)=>`<li><input type="checkbox" data-gon="${i}" ${x.on?'checked':''} aria-label="Hiện ${GSEC_NAMES[x.id]}" title="${GSEC_NAMES[x.id]}"><input type="text" data-gtitle="${x.id}" value="${esc((G().titles||{})[x.id]||GSEC_TITLES[x.id])}" aria-label="Tiêu đề ${GSEC_NAMES[x.id]}"><button class="btn ghost small" data-gmv="${i}:-1" ${i===0?'disabled':''} aria-label="Lên">↑</button><button class="btn ghost small" data-gmv="${i}:1" ${i===o.length-1?'disabled':''} aria-label="Xuống">↓</button></li>`).join('')}
+function gRenderAll(){gRenderBasics();gRenderPhoto();gRenderThemes();gRenderSal();gRenderGuests();gRenderExtra();dzRenderLib()}
+function setMode(m){S.mode=m;setTimeout(dzRenderLib,0);document.body.classList.toggle('mode-grad',m==='grad');document.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.mode===m));showPane(curTab);skipIntro=false;if(m==='grad')gRenderAll();update(true)}
 let curTab='content';
 function showPane(tab){curTab=tab==='preview'?curTab:tab;const pre=S.mode==='grad'?'gpane-':'pane-';['content','look','share'].forEach(p=>{const a=$('#pane-'+p),b=$('#gpane-'+p);if(a)a.hidden=!(pre==='pane-'&&p===curTab);if(b)b.hidden=!(pre==='gpane-'&&p===curTab)})}
 async function gSetPhoto(file){const st=$('#gCutStatus');gTouched();st.textContent='Đang đọc ảnh…';
@@ -3080,11 +3397,22 @@ const GRAD_CSS=`
 .intro-dip.o1 .dip-paper{height:min(52vh,380px)}.intro-dip.o1 .dip-seal{transform:scale(0) rotate(90deg);opacity:0}
 .bgdark .intro .tap{color:rgba(255,255,255,.85)}.gseal{display:grid;place-items:center}.gseal svg{width:46px}
 .intro-iris .gseal svg{width:44px}
+/* Chỉnh ảnh chân dung */
+.pa-on .gh .gp{scale:var(--pz);transform-origin:50% 100%;margin-left:var(--px);margin-bottom:calc(var(--py) * -1)}
+.pa-f .gh .gp{filter:brightness(var(--pbr)) var(--pfx)!important}
+.gh-name,.pp-title,.cq-name,.ed-n,.wc-n,.vs-n,.vn-t,.sc-t,.ss-t,.zn-t,.vs-t,.cq-t{zoom:var(--ns,1)}
 /* Bảng chỉnh sửa (không dùng trong thiệp) */
 `;
 
 async function gMusicData(){const id=libId(G());if(!id||G().music)return'';try{const r=await fetch(trackURL(id));if(!r.ok)throw 0;const bl=await r.blob();return await new Promise(res=>{const fr=new FileReader();fr.onload=()=>res(fr.result);fr.onerror=()=>res('');fr.readAsDataURL(bl)})}catch(e){return''}}
 document.addEventListener('input',e=>{const t=e.target;if(!S||!S.grad)return;
+  if(t.dataset.go!==undefined&&t.dataset.go){gTouched();G().over={...(G().over||{}),[t.dataset.go]:t.value};if(!t.value)delete G().over[t.dataset.go];skipIntro=false;update();return}
+  if(t.dataset.gpa){gTouched();G().pa={...(G().pa||{}),[t.dataset.gpa]:t.tagName==='SELECT'?t.value:+t.value};update();return}
+  if(t.dataset.gv){gTouched();const was=!!(G().video||{}).url;G().video={...(G().video||{}),[t.dataset.gv]:t.value};if(!was&&t.dataset.gv==='url'&&t.value)gAutoOn('video');update();return}
+  if(t.dataset.gg){gTouched();const was=!!(G().gift||{}).acc;G().gift={...(G().gift||{}),[t.dataset.gg]:t.value};if(!was&&t.dataset.gg==='acc'&&t.value)gAutoOn('gift');gRenderQr();update();return}
+  if(t.dataset.gst){gTouched();const i=+t.closest('[data-gi]').dataset.gi;G().story[i][t.dataset.gst]=t.value;update();return}
+  if(t.dataset.gon!==undefined){G().order[+t.dataset.gon].on=t.checked;update();return}
+  if(t.dataset.gtitle){G().titles={...(G().titles||{}),[t.dataset.gtitle]:t.value};update();return}
   if(t.dataset.gk){gTouched();const k=t.dataset.gk;G()[k]=t.type==='checkbox'?t.checked:t.value;if(['guests','msgTpl','salAuto','siteUrl'].includes(k))gRenderGuests();update();return}
   if(t.dataset.gsec){G().sec={...G().sec,[t.dataset.gsec]:t.checked};update();return}
   if(t.dataset.gsal){G().salTpl={...(G().salTpl||{}),[t.dataset.gsal]:t.value};update();return}
@@ -3095,12 +3423,18 @@ document.addEventListener('change',async e=>{const t=e.target;if(!S||!S.grad)ret
   if(t.id==='gCutFile'&&t.files[0]){gTouched();try{G().cut=await readAlpha(t.files[0],1200);G().useCut=true;$('#gCutStatus').textContent='Đã dùng ảnh tách nền của bạn.'}catch(_){$('#gCutStatus').textContent='Không đọc được ảnh này.'}t.value='';gRenderPhoto();update(true);return}
   if(t.id==='gAlbumFile'&&t.files.length){gTouched();G().photos=G().photos||[];for(const f of [...t.files].slice(0,Math.max(0,12-G().photos.length))){try{G().photos.push(await readImage(f,1200))}catch(_){}}t.value='';gRenderPhoto();update(true);return}
   if(t.id==='gMusic'){G().musicPreset=t.value;update(true);return}
+  if(t.id==='gQrFile'&&t.files[0]){try{G().gift={...(G().gift||{}),qr:await readImage(t.files[0],700,'image/png')};gAutoOn('gift')}catch(_){}t.value='';gRenderQr();update(true);return}
   if(t.id==='gIntro'){G().intro=t.value;skipIntro=false;update(true);return}
   if(t.id==='gUseCut'){G().useCut=t.checked;update(true);return}});
 document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b||!S||!S.grad)return;const d=b.dataset;
   if(d.mode){setMode(d.mode);return}
   if(d.gtheme){gTouched();G().theme=d.gtheme;G().variant=0;G().custom={};G().intro='';skipIntro=false;gRenderThemes();gRenderBasics();update(true);return}
   if(d.gfilter){S.gfilter=d.gfilter;gRenderThemes();return}
+  if(d.gmv){const[i,dir]=d.gmv.split(':').map(Number),o=G().order,j=i+dir;if(j<0||j>=o.length)return;[o[i],o[j]]=[o[j],o[i]];gRenderOrder();update();return}
+  if(d.gsdel!==undefined){G().story.splice(+d.gsdel,1);gRenderStory();update();return}
+  if(b.id==='gStoryAdd'){G().story=G().story||[];G().story.push({when:'',title:'',text:''});gRenderStory();update();return}
+  if(b.id==='gPaReset'){G().pa={zoom:1,x:0,y:0,bright:1,style:''};gRenderExtra();update();return}
+  if(b.id==='gQrDel'){G().gift.qr='';gRenderQr();update();return}
   if(d.gvar!==undefined){G().variant=+d.gvar;G().custom={};gRenderThemes();update(true);return}
   if(b.id==='gResetColors'){G().custom={};gRenderThemes();update(true);return}
   if(d.galdel!==undefined){G().photos.splice(+d.galdel,1);gRenderPhoto();update(true);return}
@@ -3145,5 +3479,3 @@ function startEditor(){S=load();if(!IN_CLAUDE){const o=owner();if(ONLINE){S.shar
   startEditor()})();
 if(!window.QRCode){window.addEventListener('load',()=>{if(window.QRCode&&S){renderGift();renderGuests();update(true)}})}
 </script>
-
-</html>
